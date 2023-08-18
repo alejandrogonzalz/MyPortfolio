@@ -1,0 +1,100 @@
+@import "../sass/global";
+@import "../sass//mixins";
+
+// Container CSS
+.landing_page {
+  margin-top: 15vh;
+  margin-left: $landing-margin-left;
+}
+
+.top_container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: $top-container-height;
+  width: 100%;
+}
+
+.name_container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 15vh;
+}
+
+.name_wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-style: italic;
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
+
+.middle_container {
+  padding: 10vh 0;
+}
+
+.bottom_container {
+  span {
+    font-size: 1.5rem;
+    font-weight: 300;
+    strong {
+      font-weight: 800;
+    }
+  }
+}
+
+// Lines CSS
+.vertical_line {
+  @include VerticalLine(1px solid white, 100vh);
+  top: 0;
+  left: $landing-margin-left;
+  z-index: -1;
+}
+
+.horizontal_line_1 {
+  @include HorizontalLine(1px solid white, calc(100% - $landing-margin-left));
+  right: 0;
+  z-index: -1;
+}
+
+.horizontal_line_2 {
+  @include HorizontalLine(1px solid white, 85%);
+  left: 0;
+  z-index: -1;
+}
+
+.horizontal_line_full {
+  @include HorizontalLine(1px solid white, 100%);
+  right: 0;
+  z-index: -1;
+}
+
+/// ***************************
+/// BREAKPOINTS
+/// ***************************
+@media screen and (min-width: $breakpoint-tablet) {
+  // Styles for tablets and larger
+}
+
+@media screen and (min-width: $breakpoint-laptop) {
+  // Styles for laptops and larger
+}
+
+@media screen and (min-width: $breakpoint-desktop) {
+  // Styles for desktops and larger
+}

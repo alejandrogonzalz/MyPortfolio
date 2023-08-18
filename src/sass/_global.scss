@@ -1,0 +1,30 @@
+@import "./fonts";
+@import "./variables";
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(79, 75, 75);
+  color: white;
+  font-family: $font-inter, $font-fira-code, $font-roboto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}

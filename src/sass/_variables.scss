@@ -1,0 +1,29 @@
+/// ***************************
+/// LANDING PAGE SIZES
+/// ***************************
+$landing-margin-left: 28%;
+
+// top container
+$top-container-height: 15vh;
+
+// carousel
+$carousel-height: 130%;
+$carousel-left: calc($top-container-height - 5vh);
+
+// name container
+$name-container-margin-left: calc($top-container-height);
+
+/// ***************************
+/// BREAKPOINTS
+/// ***************************
+$breakpoint-desktop: 1200px;
+$breakpoint-laptop: 950px;
+$breakpoint-tablet: 760px;
+$breakpoint-mobile: 550px;
+
+$breakpoints: (
+  desktop: 1200px,
+  laptop: 950px,
+  tablet: 760px,
+  mobile: 550px,
+);

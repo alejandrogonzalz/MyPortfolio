@@ -1,0 +1,13 @@
+@mixin VerticalLine($border-left, $height) {
+  all: unset;
+  position: absolute;
+  border-left: $border-left;
+  height: $height;
+}
+
+@mixin HorizontalLine($border-bottom, $width) {
+  all: unset;
+  position: absolute;
+  border-bottom: $border-bottom;
+  width: $width;
+}
