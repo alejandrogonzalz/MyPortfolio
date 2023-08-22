@@ -2,9 +2,11 @@
 @import "../sass//mixins";
 
 // Container CSS
-.landing_page {
-  margin-top: 15vh;
-  margin-left: $landing-margin-left;
+.landing__page {
+  padding-top: 15vh;
+  padding-left: $landing-margin-left;
+  height: 100vh;
+  width: 100vw;
 }
 
 .top_container {
@@ -45,7 +47,9 @@
 }
 
 .middle_container {
-  padding: 10vh 0;
+  height: 40vh;
+  display: grid;
+  place-items: center;
 }
 
 .bottom_container {
@@ -55,6 +59,31 @@
     strong {
       font-weight: 800;
     }
+  }
+}
+
+// Icons CSS
+.icon_container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+
+  .line {
+    @include VerticalLine(2px solid white, 5rem);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.icon {
+  aspect-ratio: 1/1;
+  width: 2.5rem;
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 

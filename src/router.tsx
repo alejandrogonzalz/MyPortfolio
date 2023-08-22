@@ -6,13 +6,12 @@ import {
 } from "react-router-dom";
 
 // import { Sidebar } from "./sidebar/Sidebar";
-import { Landing } from "./home/Landing";
-
+import { App } from "./App";
 export function Router() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<App />} />
       </Route>
     )
   );
