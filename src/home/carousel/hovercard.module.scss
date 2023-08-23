@@ -4,8 +4,9 @@
   aspect-ratio: 1/1;
   position: absolute;
   height: $hovercard-height;
-  top: calc(($hovercard-height - 100%) / 2 * -1);
-  left: -$hovercard-left;
+  top: 50%;
+  left: -10vh;
+  transform: translateY(-50%);
   border-radius: 50%;
   overflow: hidden;
   z-index: 0;
@@ -146,6 +147,10 @@
   .content_container {
     width: 480px;
   }
+  .hovercard_trigger {
+    height: 150%;
+    left: -11.25vh;
+  }
 }
 
 @media screen and (min-width: $breakpoint-desktop) {
@@ -158,5 +163,9 @@
   }
   .text_container {
     margin-top: 40px;
+  }
+  .hovercard_trigger {
+    height: 190%;
+    left: -14.5vh;
   }
 }

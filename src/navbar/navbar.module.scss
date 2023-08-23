@@ -11,6 +11,7 @@
   z-index: 9999999999;
   display: flex;
   align-items: center;
+  padding: 0 8vw;
 }
 
 @mixin elements() {
@@ -19,7 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   gap: 5%;
   li {
@@ -29,7 +30,6 @@
 
 .nav_elements {
   @include elements();
-  margin-right: 5%;
   gap: 5%;
   button {
     all: unset;

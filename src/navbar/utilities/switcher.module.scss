@@ -1,0 +1,53 @@
+@import "../../sass/global";
+
+.switch_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.switch_root {
+  all: unset;
+  display: flex;
+  align-items: center;
+  width: 38px;
+  height: 10px;
+  background-color: $white;
+  border-radius: 9999px;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  &[data-state="checked"] {
+    background-color: $pink-900;
+  }
+}
+
+.switch_thumb {
+  display: block;
+  aspect-ratio: 1/1;
+  width: 19px;
+  background-color: $pink-900;
+  border-radius: 50%;
+  transition: transform 100ms;
+  transform: translateX(0px);
+  will-change: transform;
+  &[data-state="checked"] {
+    transform: translateX(19px);
+  }
+}
+
+.icon {
+  aspect-ratio: 1/1;
+  width: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  &:hover {
+    background-color: $pink-900;
+  }
+}
