@@ -3,7 +3,7 @@
 
 // Container CSS
 .landing__page {
-  padding-top: 15vh;
+  padding-top: 18vh;
   padding-left: $landing-margin-left;
   height: 100vh;
   width: 100vw;
@@ -102,7 +102,7 @@
 }
 
 .horizontal_line_2 {
-  @include HorizontalLine(1px solid white, 85%);
+  @include HorizontalLine(1px solid white, 80%);
   left: 0;
   z-index: -1;
 }

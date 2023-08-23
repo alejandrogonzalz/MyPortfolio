@@ -1,0 +1,78 @@
+@import "../sass/global";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  min-height: 6vh;
+  background-color: $gray-900;
+  color: $gray-100;
+  opacity: 0.9;
+  z-index: 9999999999;
+  display: flex;
+  align-items: center;
+}
+
+@mixin elements() {
+  all: unset;
+  user-select: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  li {
+    list-style: none;
+  }
+}
+
+.nav_elements {
+  @include elements();
+  margin-right: 5%;
+  gap: 5%;
+  button {
+    all: unset;
+  }
+  div {
+    font-family: $font-inter, $font-fira-code, $font-roboto;
+    padding: 8px 14px;
+    border-radius: 4px;
+  }
+}
+
+.nav_element {
+  &:hover {
+    cursor: pointer;
+    background-color: $pink-900;
+    color: $pink-100;
+  }
+}
+
+.fn_elements {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+}
+
+.fn_element {
+  svg {
+    aspect-ratio: 1/1;
+    height: 30px;
+    width: 30px;
+    color: white;
+  }
+  a {
+    all: unset;
+  }
+
+  &:hover {
+    cursor: pointer;
+    .social_icon {
+      color: $pink-900;
+    }
+  }
+  &:focus-within {
+    box-shadow: 0 0 0 1px $pink-900;
+  }
+}

@@ -1,0 +1,19 @@
+@use "./colors" as *;
+
+.light {
+  .text {
+    color: $gray-900;
+  }
+  .background {
+    background-color: $gray-200;
+  }
+}
+
+.dark {
+  .text {
+    color: $gray-100;
+  }
+  .background {
+    background-color: $gray-800;
+  }
+}

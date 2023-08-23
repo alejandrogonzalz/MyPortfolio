@@ -6,6 +6,8 @@ import { About } from "./about/About";
 import { useScroll, animated } from "@react-spring/web";
 import { useState } from "react";
 
+// import { clsx } from "clsx";
+
 export const App = () => {
   const [opacity, setOpacity] = useState(1);
 
@@ -17,7 +19,6 @@ export const App = () => {
 
   return (
     <>
-      {/* <div style={{ position: "fixed" }}>cass</div> */}
       <div className={classes.body}>
         <animated.div
           className={classes.landing__page}

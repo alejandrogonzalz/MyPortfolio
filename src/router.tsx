@@ -7,11 +7,12 @@ import {
 
 // import { Sidebar } from "./sidebar/Sidebar";
 import { App } from "./App";
+import { Navbar } from "./navbar/Navbar";
 export function Router() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route>
-        <Route path="/" element={<App />} />
+      <Route path="/" element={<Navbar />}>
+        <Route index element={<App />} />
       </Route>
     )
   );

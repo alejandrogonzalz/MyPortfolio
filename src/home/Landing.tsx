@@ -1,7 +1,6 @@
 import classes from "./landing.module.scss";
 import { VLine, HLine } from "../shared/lines";
-import { Carousel } from "./carousel/Carousel";
-import clsx from "clsx";
+import { HoverComponent } from "./carousel/HoverCard";
 
 import JS from "./svg/js.svg";
 import HTML5 from "./svg/html5.svg";
@@ -25,7 +24,7 @@ export const Landing = () => {
       <VLine className={classes.vertical_line} />
       <HLine className={classes.horizontal_line_1} />
       <div className={classes.top_container}>
-        <Carousel />
+        <HoverComponent />
       </div>
       <HLine className={classes.horizontal_line_2}>
         <div className={classes.name_container}>
