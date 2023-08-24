@@ -51,3 +51,9 @@
     background-color: $pink-900;
   }
 }
+
+.light {
+  &:hover {
+    color: $secondary-light;
+  }
+}

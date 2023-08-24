@@ -6,9 +6,14 @@ import { About } from "./about/About";
 import { useScroll, animated } from "@react-spring/web";
 import { useState } from "react";
 
-// import { clsx } from "clsx";
+import { ThemeContext } from "./app/ThemeContext";
+import { useContext } from "react";
+import clsx from "clsx";
 
 export const App = () => {
+  const themeContext = useContext(ThemeContext);
+  const light = themeContext?.theme === "light";
+
   const [opacity, setOpacity] = useState(1);
 
   const { scrollYProgress } = useScroll({
@@ -21,14 +26,16 @@ export const App = () => {
     <>
       <div className={classes.body}>
         <animated.div
-          className={classes.landing__page}
+          className={clsx(classes.landing__page, { [classes.light]: light })}
           style={{ opacity: opacity }}
         >
-          <Landing />
+          <Landing style={{ opacity: opacity }} />
         </animated.div>
 
         <animated.div
-          className={classes.about__page}
+          className={clsx(classes.about__page, {
+            [classes.about_light]: light,
+          })}
           style={{
             clipPath: scrollYProgress.to((val) => `circle(${val * 100}%)`),
           }}

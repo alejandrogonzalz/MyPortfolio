@@ -9,7 +9,7 @@ import SASS from "./svg/sass.svg";
 import NODEJS from "./svg/node.svg";
 import REACT from "./svg/react.svg";
 
-export const Landing = () => {
+export const Landing = ({ ...props }) => {
   const iconPaths = [
     { icon: JS, className: classes.icon_javascript },
     { icon: HTML5, className: classes.icon_html },
@@ -24,7 +24,7 @@ export const Landing = () => {
       <VLine className={classes.vertical_line} />
       <HLine className={classes.horizontal_line_1} />
       <div className={classes.top_container}>
-        <HoverComponent />
+        <HoverComponent style={props.style} />
       </div>
       <HLine className={classes.horizontal_line_2}>
         <div className={classes.name_container}>

@@ -70,12 +70,12 @@
   justify-content: space-evenly;
   align-items: center;
   position: relative;
+}
 
-  .line {
-    @include VerticalLine(2px solid white, 5rem);
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.line {
+  @include VerticalLine(2.5px solid, 5rem);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .icon {
@@ -90,26 +90,26 @@
 
 // Lines CSS
 .vertical_line {
-  @include VerticalLine(1px solid white, 100vh);
+  @include VerticalLine(1px solid, 100vh);
   top: 0;
   left: $landing-margin-left;
   z-index: -1;
 }
 
 .horizontal_line_1 {
-  @include HorizontalLine(1px solid white, calc(100% - $landing-margin-left));
+  @include HorizontalLine(1px solid, calc(100% - $landing-margin-left));
   right: 0;
   z-index: -1;
 }
 
 .horizontal_line_2 {
-  @include HorizontalLine(1px solid white, 80%);
+  @include HorizontalLine(1px solid, 80%);
   left: 0;
   z-index: -1;
 }
 
 .horizontal_line_full {
-  @include HorizontalLine(1px solid white, 100%);
+  @include HorizontalLine(1px solid, 100%);
   right: 0;
   z-index: -1;
 }

@@ -1,17 +1,26 @@
-import { useEffect, useState } from "react";
 import classes from "./switcher.module.scss";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { ThemeContext } from "../../app/ThemeContext";
+import { useContext } from "react";
+import clsx from "clsx";
 
 export const ThemeSwitch = ({ ...props }) => {
-  const [checked, setChecked] = useState("dark");
-  let content;
+  const themeContext = useContext(ThemeContext);
 
   const handleChecked = () => {
-    setChecked((prevChecked) => (prevChecked === "dark" ? "light" : "dark"));
+    themeContext?.setTheme((prevTheme: any) =>
+      prevTheme === "dark" ? "light" : "dark"
+    );
   };
 
-  content = checked === "dark" ? <SunIcon /> : <MoonIcon />;
+  let content;
+  content =
+    themeContext && themeContext?.theme === "dark" ? <SunIcon /> : <MoonIcon />;
+
+  // useEffect(() => {
+  //   console.log(themeContext?.theme);
+  // }, [themeContext?.theme]);
 
   return (
     <label htmlFor={props.id} className={classes.switch_container}>
@@ -19,11 +28,17 @@ export const ThemeSwitch = ({ ...props }) => {
         className={classes.switch_root}
         id={props.id}
         onCheckedChange={handleChecked}
-        checked={checked === "light"} // Make sure to pass the checked prop to your switch library
+        checked={themeContext?.theme === "light"}
       >
         <SwitchPrimitive.Thumb className={classes.switch_thumb} />
       </SwitchPrimitive.Root>
-      <div className={classes.icon}>{content}</div>
+      <div
+        className={clsx(classes.icon, {
+          [classes.light]: themeContext?.theme === "light",
+        })}
+      >
+        {content}
+      </div>
     </label>
   );
 };

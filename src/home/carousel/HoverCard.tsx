@@ -4,21 +4,17 @@ import pic1 from "./pictures/pic1.jpg";
 import headerPic from "./pictures/header.jpeg";
 import tec80 from "./pictures/tec80.jpg";
 
-import { animated } from "@react-spring/web";
-// import { ReactElement, ReactNode } from "react";
 import * as HoverCard from "@radix-ui/react-hover-card";
+import { animated } from "@react-spring/web";
+import { ThemeContext } from "../../app/ThemeContext";
+import { useContext } from "react";
 
-// export const MyHoverCard = () => {
-//   return (
-//     <div className={classes.main__container}>
-//       <div className={classes.hover_card}>
-//         <img src={pic0} />
-//       </div>
-//     </div>
-//   );
-// };
+import { clsx } from "clsx";
 
-export const HoverComponent = () => {
+export const HoverComponent = ({ ...props }) => {
+  const themeContext = useContext(ThemeContext);
+  const light = themeContext?.theme === "light";
+
   return (
     <HoverCard.Root openDelay={250}>
       <HoverCard.Trigger asChild>
@@ -36,7 +32,12 @@ export const HoverComponent = () => {
 
       <HoverCard.Portal>
         <HoverCard.Content sideOffset={5} asChild side="right">
-          <animated.div className={classes.hovercard_content}>
+          <animated.div
+            className={clsx(classes.hovercard_content, {
+              [classes.light]: light,
+            })}
+            style={props.style}
+          >
             <div className={classes.content_container}>
               <div className={classes.header_container}>
                 <img src={headerPic} alt="headerPic" />
@@ -63,14 +64,22 @@ export const HoverComponent = () => {
                       <div className={classes.school_logo}>
                         <img src={tec80} alt="tec" />
                       </div>
-                      <h4>Tecnológico de Monterrey</h4>
+                      <h4 className={clsx({ [classes.a_light]: light })}>
+                        Tecnológico de Monterrey
+                      </h4>
                     </a>
                   </div>
 
                   <div className={classes.contact_container}>
                     <p>
                       Monterrey, Nuevo León, Mexico
-                      <span className={classes.blue_info}>Contact info</span>
+                      <span
+                        className={clsx(classes.blue_info, {
+                          [classes.a_light]: light,
+                        })}
+                      >
+                        Contact info
+                      </span>
                     </p>
                     <p>
                       <span>
@@ -78,6 +87,7 @@ export const HoverComponent = () => {
                           href="https://www.linkedin.com/search/results/people/?network=%5B%22F%22%5D&origin=MEMBER_PROFILE_CANNED_SEARCH&sid=)TC"
                           target="_blank"
                           rel="noreferrer noopener"
+                          className={clsx({ [classes.a_light]: light })}
                         >
                           325 connections
                         </a>
