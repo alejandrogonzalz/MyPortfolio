@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 import { animated } from "@react-spring/web";
 import { HLine, VLine } from "../shared/lines";
+import { Space } from "./space";
 
 export const About = ({ ...props }) => {
   // const [width, setWidth] = useState(0);
@@ -55,6 +56,7 @@ export const About = ({ ...props }) => {
             <HLine className={classes.horizontal_line} />
           </div>
         </div>
+        <Space />
       </animated.div>
     </>
   );
