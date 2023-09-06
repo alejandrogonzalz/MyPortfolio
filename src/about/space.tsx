@@ -3,7 +3,7 @@ import * as THREE from "three";
 import classes from "./about.module.scss";
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { useMemo, Suspense, useRef } from "react";
+import { useMemo, Suspense, useRef, useEffect } from "react";
 import particleImg from "./point.png";
 
 // interface Star {
@@ -54,6 +54,10 @@ const Particles = () => {
     });
     bufferRef.current.needsUpdate = true;
   });
+
+  useEffect(() => {
+    console.log(bufferRef.current);
+  }, []);
 
   return (
     <points>
