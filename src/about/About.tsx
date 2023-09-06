@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 
 import { animated } from "@react-spring/web";
 import { HLine, VLine } from "../shared/lines";
-import { Space } from "./space";
 
 export const About = ({ ...props }) => {
   // const [width, setWidth] = useState(0);
@@ -56,7 +55,6 @@ export const About = ({ ...props }) => {
             <HLine className={classes.horizontal_line} />
           </div>
         </div>
-        <Space />
       </animated.div>
     </>
   );
@@ -65,85 +63,3 @@ export const About = ({ ...props }) => {
 const Competence = ({ children }: { children: ReactNode }) => {
   return <animated.div className={classes.compentece}>{children}</animated.div>;
 };
-
-// interface ParticleProps {
-//   x: number;
-//   y: number;
-//   size: number;
-//   color: string;
-// }
-
-// const Particle = ({ x, y, size, color }: ParticleProps) => {
-//   const [springProps, set] = useSpring(() => ({
-//     opacity: 1,
-//     from: { opacity: 0 },
-//   }));
-
-//   useEffect(() => {
-//     set({ opacity: 1 });
-
-//     const timeout = setTimeout(() => {
-//       set({ opacity: 0 });
-//     }, 1000);
-
-//     return () => clearTimeout(timeout);
-//   }, [set]);
-
-//   return (
-//     <animated.div
-//       style={{
-//         position: "absolute",
-//         left: x,
-//         top: y,
-//         width: size,
-//         height: size,
-//         borderRadius: "50%",
-//         backgroundColor: color,
-//         opacity: springProps.opacity,
-//       }}
-//     />
-//   );
-// };
-
-// const ParticleAnimation = () => {
-//   const [particles, setParticles] = useState<ParticleProps[]>([]);
-
-//   const addParticle = (x: number, y: number) => {
-//     const newParticle = {
-//       x,
-//       y,
-//       size: Math.random() * 5 + 2,
-//       color: `rgba(${Math.random() * 255},${Math.random() * 255},${
-//         Math.random() * 255
-//       },1)`,
-//     };
-
-//     setParticles((prevParticles) => [...prevParticles, newParticle]);
-//   };
-
-//   return (
-//     <div
-//       style={{
-//         position: "absolute",
-//         width: "100%",
-//         height: "100%",
-//         zIndex: "0",
-//       }}
-//       onMouseMove={(e) => addParticle(e.clientX, e.clientY)}
-//       onTouchMove={(e) => {
-//         const touch = e.touches[0];
-//         addParticle(touch.clientX, touch.clientY);
-//       }}
-//     >
-//       {particles.map((particle, index) => (
-//         <Particle
-//           key={index}
-//           x={particle.x}
-//           y={particle.y}
-//           size={particle.size}
-//           color={particle.color}
-//         />
-//       ))}
-//     </div>
-//   );
-// };

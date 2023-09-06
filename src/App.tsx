@@ -3,11 +3,12 @@ import classes from "./app.module.scss";
 import { Landing } from "./home/Landing";
 import { About } from "./about/About";
 
-import { useScroll, useSpring, animated } from "@react-spring/web";
+import { useScroll, animated } from "@react-spring/web";
 import { useState } from "react";
 
 import { ThemeContext } from "./app/ThemeContext";
 import { useContext } from "react";
+import { Space } from "./about/space";
 import clsx from "clsx";
 
 export const App = () => {
@@ -19,20 +20,6 @@ export const App = () => {
   const { scrollYProgress } = useScroll({
     onChange: ({ value: { scrollYProgress } }) => {
       setOpacity(1 - scrollYProgress * 3);
-    },
-  });
-
-  const spaceBackgroundProps = useSpring({
-    opacity: scrollYProgress.to((val) => 1 - val * 3),
-    background: scrollYProgress.to(
-      (val) =>
-        `radial-gradient(circle at 50% 50%, #000 ${val * 10}%, transparent ${
-          val * 60
-        }%)`
-    ),
-    transform: scrollYProgress.to((val) => `scale(${val})`),
-    config: {
-      duration: 10,
     },
   });
 
@@ -54,9 +41,8 @@ export const App = () => {
             clipPath: scrollYProgress.to((val) => `circle(${val * 100}%)`),
           }}
         >
-          <About
-            style={{ ...spaceBackgroundProps, opacity: scrollYProgress }}
-          />
+          <About style={{ opacity: scrollYProgress }} />
+          <Space />
         </animated.div>
 
         {new Array(2).fill(null).map((_, index) => (

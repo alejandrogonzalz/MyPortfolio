@@ -78,3 +78,9 @@
   margin-left: auto;
   transform: translate(0, -50%);
 }
+
+.space_canvas {
+  position: absolute !important;
+  inset: 0;
+  // z-index: -1;
+}
