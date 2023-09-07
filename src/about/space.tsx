@@ -1,72 +1,74 @@
 import * as THREE from "three";
 
 import classes from "./about.module.scss";
-import { Canvas, useLoader, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Canvas, useLoader, useThree, useFrame } from "@react-three/fiber";
+// import { OrbitControls } from "@react-three/drei";
 import { useMemo, Suspense, useRef, useEffect } from "react";
 import particleImg from "./point.png";
 
-// interface Star {
-//   position: THREE.Vector3;
-//   velocity: number;
-//   acceleration: number;
-// }
-
 const Particles = () => {
   const particleTex = useLoader(THREE.TextureLoader, particleImg);
+  const starBoxRef = useRef<THREE.Points>(null);
   const bufferRef = useRef<THREE.BufferAttribute>(null);
 
+  const { camera } = useThree();
+
+  camera.position.z = 1;
+  camera.rotation.x = Math.PI / 2;
+
   const stars = useMemo(() => {
-    const starCount = 6000;
-    const starArray = new Float32Array(starCount * 3);
-    const stars = [];
+    const count = 9000;
 
-    for (let i = 0; i < starCount; i++) {
-      const x = Math.random() * 500 - 300;
-      const y = Math.random() * 500 - 300;
-      const z = Math.random() * 500 - 300;
+    const positions: number[] = [];
+    const accelerations: number[] = [];
+    const velocities: number[] = [];
 
-      const star = {
-        position: new THREE.Vector3(x, y, z),
-        velocity: new THREE.Vector3(0, 0, 0),
-        acceleration: new THREE.Vector3(0, 0, 0.04),
-      };
+    for (let i = 0; i < count; i++) {
+      positions.push(Math.random() * 600 - 300);
 
-      star.position.toArray(starArray, i * 3);
-      stars.push(star);
+      if (i % 3 === 0) {
+        accelerations.push(0);
+        velocities.push(0.2);
+      }
     }
 
-    return { positions: starArray, stars: stars };
+    const buffer = new Float32Array(positions);
+    return { positions: buffer, accelerations, velocities };
   }, []);
 
   useFrame(() => {
-    if (!bufferRef.current) {
-      return;
-    }
-    stars.stars.forEach((star) => {
-      star.velocity.add(star.acceleration); // Update velocity by adding acceleration
-      star.position.y -= star.velocity.y; // Update the y-coordinate of position using velocity.y
+    let velocities = stars.velocities;
+    let accelerations = stars.accelerations;
+    let positions = bufferRef.current?.array;
 
-      if (star.position.y < -200) {
-        star.position.y = 200;
-        star.velocity.set(0, 0, 0); // Reset velocity to (0, 0, 0)
+    if (!positions) return;
+
+    for (let i = 0; i < velocities.length; i++) {
+      velocities[i / 3 + (i % 3)] += accelerations[i];
+      positions[i * 3 + 1] -= velocities[i] * 5.3;
+
+      if (positions[i * 3 + 1] < -200) {
+        positions[i * 3 + 1] = 400;
+        velocities[i / 3 + (i % 3)] = 0;
       }
-    });
-    bufferRef.current.needsUpdate = true;
+    }
+    if (bufferRef.current) {
+      bufferRef.current.needsUpdate = true;
+    }
   });
 
   useEffect(() => {
-    console.log(bufferRef.current);
+    console.log(starBoxRef.current);
   }, []);
 
   return (
-    <points>
+    <points ref={starBoxRef}>
       <bufferGeometry attach="geometry">
         <bufferAttribute
           ref={bufferRef}
           attach={"attributes-position"}
-          array={stars.positions}
-          count={stars.positions.length / 3}
+          array={stars.positions} // Use new Float32Array to convert the array
+          count={stars.positions.length / 3} // Set count to the length of the positions array
           itemSize={3}
         />
       </bufferGeometry>
@@ -74,7 +76,7 @@ const Particles = () => {
         attach="material"
         map={particleTex}
         color={0x888888}
-        size={0.3}
+        size={0.7}
         sizeAttenuation
         transparent={false}
         alphaTest={0.5}
@@ -88,7 +90,7 @@ export const Space = () => {
   return (
     <Canvas className={classes.space_canvas}>
       <Suspense fallback={null}>
-        <OrbitControls enableZoom={false} />
+        {/* <OrbitControls enableZoom={false} /> */}
         <Particles />
       </Suspense>
     </Canvas>
@@ -110,3 +112,44 @@ export const Space = () => {
 //     </>
 //   );
 // };
+
+// const starBox = new Three.BufferGeometry();
+
+// const vertices = {
+//   positions: [] as number[],
+//   accelerations: [] as number[],
+//   velocities: [] as number[],
+// };
+
+// for (let i = 0; i < 18000; i++) {
+//   vertices.positions.push(Math.random() * 600 - 300);
+
+//   if (i % 3 === 0) {
+//     vertices.accelerations.push(0);
+//     vertices.velocities.push(0.2);
+//   }
+
+//   starBox.setAttribute(
+//     "position",
+//     new THREE.BufferAttribute(new Float32Array(vertices.positions, 3))
+//   );
+
+//   stars = new THREE.Points(starBox, starMaterial);
+//   Scene.add(stars);
+// }
+
+// function animate () {
+//   let velocities, accelerations, positions;
+//   for (let i = 0; i< velocities.length; i++){
+//     velocities[i / 3 + i % 3] += accelerations[i];
+//     positions[i * 3 + 1]-+ velocities[i];
+
+//     if (positions[i*3 + 1] < -200) {
+//       positions[i*3 +1] = 400;
+//       velocities[i/3 + i %3] = 0;
+//     }
+//   }
+
+//   stars.rotation.y += 0.0002;
+//   starBox.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions,3)))
+// }
