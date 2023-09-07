@@ -5,14 +5,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-// import { Sidebar } from "./sidebar/Sidebar";
 import { App } from "./App";
 import { Navbar } from "./navbar/Navbar";
+import { Projects } from "./projects/Projects";
+
 export function Router() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
         <Route index element={<App />} />
+        <Route element={<Projects />} path="/projects" />
       </Route>
     )
   );

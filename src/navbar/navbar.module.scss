@@ -7,11 +7,17 @@
   min-height: 6vh;
   background-color: $secondary-dark;
   color: $secondary-light;
-  opacity: 0.9;
+  opacity: 1;
   z-index: 9999999999;
   display: flex;
   align-items: center;
   padding: 0 8vw;
+}
+
+.nav_trigger {
+  position: fixed;
+  top: 15px;
+  right: 15px;
 }
 
 .light {
@@ -24,14 +30,14 @@
   }
 }
 
-@mixin elements() {
+@mixin elements($flex-direction: row) {
   all: unset;
   user-select: none;
   display: flex;
+  flex-direction: $flex-direction;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: right;
-  align-items: center;
+
   gap: 5%;
   li {
     list-style: none;
@@ -39,7 +45,7 @@
 }
 
 .nav_elements {
-  @include elements();
+  @include elements(column);
   gap: 5%;
   button {
     all: unset;
@@ -49,6 +55,15 @@
     padding: 8px 14px;
     border-radius: 4px;
   }
+  z-index: 999999999999999999999999999999999999;
+}
+.mobile {
+  position: fixed;
+  top: 6vh;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: red !important;
 }
 
 .nav_element {
@@ -84,5 +99,34 @@
   }
   &:focus-within {
     box-shadow: 0 0 0 1px $pink-900;
+  }
+}
+
+/// ***************************
+/// BREAKPOINTS
+/// ***************************
+@media screen and (min-width: $breakpoint-tablet) {
+  .nav_trigger {
+    display: none;
+  }
+  .navbar {
+    top: 0;
+    width: 100vw;
+    max-height: 6vh;
+    opacity: 0.9;
+  }
+  .nav_elements {
+    @include elements();
+    justify-content: right;
+    align-items: center;
+    gap: 5%;
+    button {
+      all: unset;
+    }
+    div {
+      font-family: $font-inter, $font-fira-code, $font-roboto;
+      padding: 8px 14px;
+      border-radius: 4px;
+    }
   }
 }

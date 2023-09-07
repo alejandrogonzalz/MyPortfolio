@@ -2,6 +2,8 @@ import classes from "./navbar.module.scss";
 import { LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
 
+import { clsx } from "clsx";
+
 interface NavElement {
   text: string;
   path: string | undefined;
@@ -45,15 +47,22 @@ export const FnElements = () => {
 
 const NavElement = ({ text, path }: NavElement) => {
   const navigate = useNavigate();
+
   const handleClick = () => {
-    if (text === "About" && typeof path === "undefined") {
-      window.scrollTo(0, 900);
-    } else if (text === "Home" && typeof path === "undefined") {
+    if (text === "About") {
+      navigate("/");
+
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 0);
+    } else if (text === "Home") {
       window.scrollTo(0, 0);
+      navigate("/");
     } else if (typeof path === "string") {
       navigate(path);
     }
   };
+
   return (
     <div className={classes.nav_element} onClick={handleClick}>
       <button>{text}</button>
@@ -61,15 +70,19 @@ const NavElement = ({ text, path }: NavElement) => {
   );
 };
 
-export const NavElements = () => {
+interface NavElementsProps {
+  className?: string;
+}
+
+export const NavElements = ({ className }: NavElementsProps) => {
   const navElements = [
-    { text: "Home" },
-    { text: "About" },
-    { text: "Projects", path: "/" },
+    { text: "Home", path: "/" },
+    { text: "About", path: "/" },
+    { text: "Projects", path: "/projects" },
   ];
   return (
     <>
-      <div className={classes.nav_elements}>
+      <div className={clsx(classes.nav_elements, className)}>
         <FnElements />
         {navElements.map((item, index) => {
           return <NavElement key={index} text={item.text} path={item?.path} />;
