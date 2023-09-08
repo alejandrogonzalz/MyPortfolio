@@ -34,7 +34,7 @@
   gap: 10px;
   font-style: italic;
   h1 {
-    font-size: 1.6rem;
+    font-size: calc(1.6rem);
   }
   h2 {
     font-size: 1.3rem;
@@ -185,7 +185,7 @@
 .arrow_down {
   position: absolute;
   right: 30px;
-  bottom: 50px;
+  bottom: 3vh;
   border-radius: 50%;
   border: 1.5px solid $primary-light;
   aspect-ratio: 1/1;
@@ -205,6 +205,7 @@
     border-color: $secondary-dark;
   }
 }
+
 /// ***************************
 /// BREAKPOINTS
 /// ***************************
@@ -219,10 +220,10 @@
 
 @media screen and (min-width: $breakpoint-laptop) {
   .middle_container > .biography {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .icon_container > .text {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .bottom_container > span {

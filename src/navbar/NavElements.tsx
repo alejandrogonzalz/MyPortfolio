@@ -8,11 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 
 import { clsx } from "clsx";
-import { forwardRef, ForwardedRef } from "react";
+import { ThemeContext } from "../app/ThemeContext";
+import { forwardRef, ForwardedRef, useContext } from "react";
 
 interface NavElement {
   text: string;
-  path: string | undefined;
+  path: string | undefined | null;
 }
 
 interface FnElement {
@@ -52,6 +53,8 @@ export const FnElements = () => {
 };
 
 const NavElement = ({ text, path }: NavElement) => {
+  const themeContext = useContext(ThemeContext);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -66,6 +69,8 @@ const NavElement = ({ text, path }: NavElement) => {
       navigate("/");
     } else if (typeof path === "string") {
       navigate(path);
+    } else if (text === "Resume") {
+      themeContext?.setOpen(true);
     }
   };
 
@@ -95,6 +100,7 @@ export const NavElements = forwardRef(
       { text: "Home", path: "/" },
       { text: "About", path: "/" },
       { text: "Projects", path: "/projects" },
+      { text: "Resume", path: null },
     ];
 
     const handleNavClose = () => {

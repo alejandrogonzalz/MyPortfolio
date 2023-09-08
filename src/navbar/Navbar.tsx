@@ -9,6 +9,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 import clsx from "clsx";
+import { ResumeDialog } from "./utilities/resume";
 
 export const Navbar = () => {
   const themeContext = useContext(ThemeContext);
@@ -79,6 +80,7 @@ export const Navbar = () => {
       </div>
 
       <main>
+        <ResumeDialog />
         {navElementsMobile}
         <Outlet />
       </main>
