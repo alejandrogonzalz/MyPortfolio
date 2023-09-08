@@ -43,10 +43,10 @@
 
 .icon {
   aspect-ratio: 1/1;
-  width: 25px;
+  width: 30px;
   display: grid;
   place-items: center;
-  border-radius: 3px;
+  border-radius: 4px;
   &:hover {
     background-color: $pink-900;
   }

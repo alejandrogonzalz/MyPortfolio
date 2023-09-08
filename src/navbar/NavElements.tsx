@@ -1,6 +1,8 @@
 import classes from "./navbar.module.scss";
-import { LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { LinkedInLogoIcon, GitHubLogoIcon, Cross1Icon} from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
+import {  animated, useSpring } from "@react-spring/web";
+
 
 import { clsx } from "clsx";
 
@@ -72,22 +74,53 @@ const NavElement = ({ text, path }: NavElement) => {
 
 interface NavElementsProps {
   className?: string;
+  navOpen?: boolean;
+  setNavOpen?: (value: boolean) => void;
+
 }
 
-export const NavElements = ({ className }: NavElementsProps) => {
+interface StyleSpringProps {
+  right: any,
+}
+
+export const NavElements = ({ className, navOpen, setNavOpen}: NavElementsProps) => {
   const navElements = [
     { text: "Home", path: "/" },
     { text: "About", path: "/" },
     { text: "Projects", path: "/projects" },
   ];
+
+  const handleNavClose = () =>{
+    if (setNavOpen){
+    setNavOpen(false)
+  }
+  }
+
+  const springProps: StyleSpringProps = useSpring({
+    right: navOpen  === false ? '-30vw' : '0vw',
+  });
+
   return (
     <>
-      <div className={clsx(classes.nav_elements, className)}>
+      <animated.div 
+  style={setNavOpen ? {
+    ...springProps
+  } : undefined}
+      className={clsx(classes.nav_elements, className)}>
+
+        {navOpen=== true ? 
+        (<button className={classes.nav_close_trigger} onClick={handleNavClose}>
+          <Cross1Icon/>
+        </button>)
+      : null}
+
+
         <FnElements />
         {navElements.map((item, index) => {
           return <NavElement key={index} text={item.text} path={item?.path} />;
         })}
-      </div>
+
+      </animated.div>
     </>
   );
 };
