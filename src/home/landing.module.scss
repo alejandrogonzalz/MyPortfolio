@@ -182,21 +182,12 @@
   }
 }
 
-.light {
-  border-color: $secondary-dark;
-  &::after,
-  &::before {
-    background-color: $primary-light;
-    border-color: $secondary-dark;
-  }
-}
-
 .arrow_down {
   position: absolute;
   right: 30px;
   bottom: 50px;
   border-radius: 50%;
-  border: 1.5px solid $primary-dark;
+  border: 1.5px solid $primary-light;
   aspect-ratio: 1/1;
   width: 55px;
   display: grid;
@@ -206,6 +197,14 @@
   }
 }
 
+.light {
+  border-color: $secondary-dark !important;
+  &::after,
+  &::before {
+    background-color: $primary-light;
+    border-color: $secondary-dark;
+  }
+}
 /// ***************************
 /// BREAKPOINTS
 /// ***************************
