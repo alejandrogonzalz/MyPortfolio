@@ -1,10 +1,14 @@
 import classes from "./navbar.module.scss";
-import { LinkedInLogoIcon, GitHubLogoIcon, Cross1Icon} from "@radix-ui/react-icons";
+import {
+  LinkedInLogoIcon,
+  GitHubLogoIcon,
+  Cross1Icon,
+} from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
-import {  animated, useSpring } from "@react-spring/web";
-
+import { animated, useSpring } from "@react-spring/web";
 
 import { clsx } from "clsx";
+import { forwardRef, ForwardedRef } from "react";
 
 interface NavElement {
   text: string;
@@ -76,51 +80,70 @@ interface NavElementsProps {
   className?: string;
   navOpen?: boolean;
   setNavOpen?: (value: boolean) => void;
-
 }
 
 interface StyleSpringProps {
-  right: any,
+  right: any;
 }
 
-export const NavElements = ({ className, navOpen, setNavOpen}: NavElementsProps) => {
-  const navElements = [
-    { text: "Home", path: "/" },
-    { text: "About", path: "/" },
-    { text: "Projects", path: "/projects" },
-  ];
+export const NavElements = forwardRef(
+  (
+    { className, navOpen, setNavOpen }: NavElementsProps,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    const navElements = [
+      { text: "Home", path: "/" },
+      { text: "About", path: "/" },
+      { text: "Projects", path: "/projects" },
+    ];
 
-  const handleNavClose = () =>{
-    if (setNavOpen){
-    setNavOpen(false)
+    const handleNavClose = () => {
+      if (setNavOpen) {
+        setNavOpen(false);
+      }
+    };
+
+    const springProps: StyleSpringProps = useSpring({
+      right: navOpen ? "0vw" : "-45vw",
+    });
+
+    const crossIconSpring = useSpring({
+      opacity: navOpen ? 1 : 0,
+      transform: navOpen ? "scale(1)" : "scale(0)",
+      config: { tension: 300, friction: 30 },
+    });
+
+    return (
+      <>
+        <animated.div
+          ref={ref}
+          style={
+            setNavOpen
+              ? {
+                  ...springProps,
+                }
+              : undefined
+          }
+          className={clsx(classes.nav_elements, className)}
+        >
+          {navOpen === true ? (
+            <animated.button
+              style={{ ...crossIconSpring }}
+              className={classes.nav_close_trigger}
+              onClick={handleNavClose}
+            >
+              <Cross1Icon />
+            </animated.button>
+          ) : null}
+
+          <FnElements />
+          {navElements.map((item, index) => {
+            return (
+              <NavElement key={index} text={item.text} path={item?.path} />
+            );
+          })}
+        </animated.div>
+      </>
+    );
   }
-  }
-
-  const springProps: StyleSpringProps = useSpring({
-    right: navOpen  === false ? '-30vw' : '0vw',
-  });
-
-  return (
-    <>
-      <animated.div 
-  style={setNavOpen ? {
-    ...springProps
-  } : undefined}
-      className={clsx(classes.nav_elements, className)}>
-
-        {navOpen=== true ? 
-        (<button className={classes.nav_close_trigger} onClick={handleNavClose}>
-          <Cross1Icon/>
-        </button>)
-      : null}
-
-
-        <FnElements />
-        {navElements.map((item, index) => {
-          return <NavElement key={index} text={item.text} path={item?.path} />;
-        })}
-
-      </animated.div>
-    </>
-  );
-};
+);

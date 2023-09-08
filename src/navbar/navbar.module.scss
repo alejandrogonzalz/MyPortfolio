@@ -23,13 +23,11 @@
   place-items: center;
   right: 6vw;
   border-radius: 4px;
-  &:hover{
+  &:hover {
     cursor: pointer;
     background-color: $pink-900;
   }
 }
-
-
 
 .light {
   background-color: $secondary-light;
@@ -40,12 +38,11 @@
     }
   }
 
-  .nav_trigger{
-    &:hover{
+  .nav_trigger {
+    &:hover {
       color: $secondary-light;
     }
   }
-
 }
 
 @mixin elements($flex-direction: row) {
@@ -71,17 +68,18 @@
     border-radius: 4px;
   }
   z-index: 99999999999;
-
-}.mobile {
+}
+.mobile {
   position: fixed;
   background-color: $secondary-dark;
   box-shadow: 4px 4px 8px hsla(200, 50%, 50%, 0.5);
   color: $secondary-light;
   height: 100vh;
-  width: 30vw;
+  width: 45vw;
   justify-content: center;
   align-items: center;
-}.mobile_light{
+}
+.mobile_light {
   background-color: $secondary-light;
   color: $secondary-dark;
   .fn_element {
@@ -90,30 +88,29 @@
     }
   }
 
-  .nav_close_trigger{
+  .nav_close_trigger {
     color: $secondary-dark;
-    &:hover{
+    &:hover {
       color: $secondary-light;
     }
-    }
   }
-
-
+}
 
 .nav_trigger {
   all: unset;
-  @include navTrigger()
+  @include navTrigger();
 }
 
-.nav_close_trigger{
+.nav_close_trigger {
   @include navTrigger();
   top: 1.5vh;
   color: $secondary-light;
-  
 }
 
 .nav_element {
-  button {all:unset;}
+  button {
+    all: unset;
+  }
   &:hover {
     cursor: pointer;
     background-color: $pink-900;
@@ -159,7 +156,6 @@
   .navbar {
     top: 0;
     width: 100vw;
-    max-height: 6vh;
     opacity: 0.9;
   }
   .nav_elements {

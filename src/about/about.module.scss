@@ -15,15 +15,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  h1 {
+    font-size: 1.3rem;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
 
 .about_me {
-  padding: 2vh 1vw;
+  padding: 1.1rem;
   text-align: justify;
   z-index: 1;
   p {
     all: unset;
     z-index: 1;
+    font-size: 0.85rem;
+    line-height: 1.1rem;
   }
 }
 
@@ -83,4 +90,18 @@
   position: absolute !important;
   inset: 0;
   z-index: -1;
+}
+
+/// ***************************
+/// BREAKPOINTS
+/// ***************************
+@media screen and (min-width: $breakpoint-tablet) {
+  .main_container {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoint-laptop) {
 }
