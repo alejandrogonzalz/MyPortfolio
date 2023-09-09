@@ -4,54 +4,56 @@
 .body {
   color: $primary-light;
   overflow-y: auto;
-  padding-top: 8vh;
+  padding-top: 9vh;
 }
 
 .light {
   color: $primary-dark;
 }
 
-.side_trigger {
-  position: fixed;
-  top: 7vh;
-  height: 100vh;
-  width: 40px;
-  background-color: $sand-1000;
+.title{
+  text-align: center
+}
+
+.top_line {
+  @include HorizontalLine(1px solid white, 60vw);
+  right: 0
+}
+
+.bot_line{
+  @include HorizontalLine(1.5px solid white, 60vw);
+  left: 0;
+}
+
+.index_container{
   display: flex;
   justify-content: center;
-  border-right: 0.8px groove $primary-light;
+  gap: 40px;
+  margin: 30px 0 20px;
+  user-select: none;
 }
 
-.main_trigger {
-  aspect-ratio: 1/1;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  &:hover {
+
+.index_item{
+  font-size: 1rem;
+  text-align: center;
+  border-top: 1px groove $primary-light;
+  border-bottom: 1px groove $primary-light;
+  padding: 4px 15px;
+  &:hover{
     cursor: pointer;
-    background-color: $sand-10;
   }
 }
 
-.sidebar {
-  position: fixed;
-  top: 7vh;
-  height: 100vh;
-  width: 300px;
-  background-color: $sand-1000;
-  border-right: 0.8px groove $primary-light;
-  padding-left: 40px;
-  z-index: -1;
+
+.project_container{
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.title {
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.75);
-  div {
-    padding: 4px 10px;
-    display: flex;
-    gap: 10px;
-  }
-}
+
 /// ***************************
 /// BREAKPOINTS
 /// ***************************

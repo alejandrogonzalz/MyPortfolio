@@ -81,7 +81,7 @@ export const Landing = ({ ...props }) => {
       <div className={clsx(classes.circle2, { [classes.light]: light })} />
 
       <HLine className={classes.horizontal_line_full} />
-      <div className={classes.bottom_container}>
+      <div className={clsx(classes.bottom_container, {[classes.bottom_container_light]: light})}>
         <span>
           <strong>"Our value</strong> increases <br />
           the more <strong>we learn"</strong>

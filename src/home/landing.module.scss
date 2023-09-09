@@ -69,7 +69,12 @@
     font-weight: 300;
     strong {
       font-weight: 800;
+      color: $teal-500;
     }
+  }
+}.bottom_container_light{
+  span > strong {
+    color: $teal-700;
   }
 }
 
