@@ -1,4 +1,4 @@
-import { ThemeContext } from "../app/ThemeContext";
+import { ThemeContext } from "../app/themeContext";
 import { useContext } from "react";
 import classes from "./lines.module.scss";
 

@@ -1,58 +1,109 @@
 @import "../sass/global";
 @import "../sass//mixins";
 
+
+.full__page {
+  width: 100vw;
+  height: 100vh;
+}
+
 .body {
   color: $primary-light;
   overflow-y: auto;
-  padding-top: 9vh;
+  padding-top: 7vh;
 }
 
 .light {
   color: $primary-dark;
-}
-
-.title{
-  text-align: center
-}
-
-.top_line {
-  @include HorizontalLine(1px solid white, 60vw);
-  right: 0
-}
-
-.bot_line{
-  @include HorizontalLine(1.5px solid white, 60vw);
-  left: 0;
-}
-
-.index_container{
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin: 30px 0 20px;
-  user-select: none;
-}
-
-
-.index_item{
-  font-size: 1rem;
-  text-align: center;
-  border-top: 1px groove $primary-light;
-  border-bottom: 1px groove $primary-light;
-  padding: 4px 15px;
-  &:hover{
-    cursor: pointer;
+  .bar{
+    background-color: $primary-dark;
+  }
+  .horizontal_line{
+    border-color: $primary-dark;
+  }
+  .circle1, .circle2 {
+    border-color: $primary-dark;
   }
 }
 
+.animated__layers {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  & > * {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    inset: 0;
+  }
+}
+
+.bar_container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 2;
+  justify-content: space-between;
+  &_inverted {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 2;
+  }
+}
+
+.bar{
+  height: 0.5vh;
+  background-color: $primary-light;
+}
 
 .project_container{
-  background-color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 15px 5vw;
 }
 
+.horizontal_line{
+  border-bottom: 1px solid $primary-light;
+  width: 100%;
+}
+
+.project_wrapper {
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(300px, 1fr);
+  gap: 10px;
+}
+
+@mixin circle ($width, $border){
+  position: absolute;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  width: $width;
+  border: $border;  
+}
+
+// circles
+.circle1{
+  @include circle (calc(100px + 2vw), 0.5px solid $secondary-light);
+  top: 15vh;
+  right: calc(-45px - 2vw);
+}
+
+.circle2 {
+  @include circle(calc(70px + 2vw), 5px solid $secondary-light);
+  top: 22vh;
+  right: 0;
+}
 
 /// ***************************
 /// BREAKPOINTS
