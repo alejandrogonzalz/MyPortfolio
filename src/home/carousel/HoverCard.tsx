@@ -6,7 +6,7 @@ import tec80 from "./pictures/tec80.jpg";
 
 import * as HoverCard from "@radix-ui/react-hover-card";
 import { animated } from "@react-spring/web";
-import { ThemeContext } from "../../app/ThemeContext";
+import { ThemeContext } from "../../app/themeContext";
 import { useContext } from "react";
 
 import { clsx } from "clsx";

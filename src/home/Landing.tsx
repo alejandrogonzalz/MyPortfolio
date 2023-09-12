@@ -3,7 +3,7 @@ import { VLine, HLine } from "../shared/lines";
 import { HoverComponent } from "./carousel/HoverCard";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 
-import { ThemeContext } from "../app/ThemeContext";
+import { ThemeContext } from "../app/themeContext";
 import { useContext, useState } from "react";
 import { clsx } from "clsx";
 import { useSpring, animated } from "@react-spring/web";
@@ -81,7 +81,11 @@ export const Landing = ({ ...props }) => {
       <div className={clsx(classes.circle2, { [classes.light]: light })} />
 
       <HLine className={classes.horizontal_line_full} />
-      <div className={clsx(classes.bottom_container, {[classes.bottom_container_light]: light})}>
+      <div
+        className={clsx(classes.bottom_container, {
+          [classes.bottom_container_light]: light,
+        })}
+      >
         <span>
           <strong>"Our value</strong> increases <br />
           the more <strong>we learn"</strong>
