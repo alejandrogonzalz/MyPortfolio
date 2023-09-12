@@ -3,7 +3,7 @@ import classes from "./navbar.module.scss";
 import { Outlet } from "react-router-dom";
 import { NavElements } from "./NavElements";
 import { ThemeSwitch } from "./utilities/switchers";
-import { ThemeContext } from "../app/ThemeContext";
+import { ThemeContext } from "../app/themeContext";
 import { useContext, useState, useEffect, useRef } from "react";
 
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
