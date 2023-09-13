@@ -3,17 +3,13 @@
 
 //** MAIN CSS ** //
 .main_container {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  padding: 15px 20px;
-  color: $primary-dark;
-  box-shadow: 0 0 0 1px $primary-light;
-  background-color: white;
+  @include cardContainer;
+}
 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.back {
+  background-color: red;
+  display: grid;
+  place-items: center;
 }
 
 .light {
@@ -29,6 +25,9 @@
     background-color: $primary-light;
     color: $primary-dark;
   }
+  .left_container {
+    border-color: $primary-light;
+  }
 }
 
 //** SHARED CSS ** //
@@ -43,13 +42,17 @@
   background-color: $primary-dark;
 }
 
+.separator_vertical_one {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $primary-dark;
+  height: 52px;
+  width: 1px;
+}
+
 .button_more {
-  all: unset;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 4px 10px;
-  border-radius: 3px;
-  box-shadow: 0 0 0 2.5px $secondary-dark;
+  @include buttonMore;
 }
 
 .icon_container {
@@ -82,15 +85,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .separator_vertical_one {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: $primary-dark;
-    height: 52px;
-    width: 1px;
   }
 
   .content_container {
@@ -178,43 +172,6 @@
   }
 }
 
-//** SWIPER STYLES **//
-.swiper_container {
-  height: 100%;
-  padding: 0 25px;
-}
-
-.swiper_item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 100%;
-  padding: 0 20px;
-
-  h3 {
-    color: $orange-600;
-  }
-
-  span {
-    padding: 0 15px;
-    font-size: 0.8rem;
-    font-weight: 300;
-    text-align: justify;
-    text-decoration: dotted;
-  }
-}
-
-.GIF_container {
-  width: 220px;
-  height: auto;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
 /// ***************************
 /// BREAKPOINTS
 /// ***************************
@@ -273,12 +230,18 @@
 
 @media screen and (min-width: $breakpoint-laptop) {
   .mid_container {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 1.9fr;
   }
 }
 
 @media screen and (min-width: $breakpoint-desktop) {
   .mid_container {
-    grid-template-columns: 1fr 4.3fr;
+    grid-template-columns: 1fr 2.75fr;
+  }
+}
+
+@media screen and (min-width: $breakpoint-large-desktop) {
+  .mid_container {
+    grid-template-columns: 1fr 4fr;
   }
 }

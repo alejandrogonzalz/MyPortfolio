@@ -41,10 +41,14 @@
   grid-template-columns: 1fr;
   width: 100%;
 
+  .project_item {
+    position: relative;
+  }
+
   /// BREAKPOINTS
   @media screen and (min-width: $breakpoint-tablet) {
-    grid-template-rows: repeat(2, 40vh);
-    gap: 10px;
+    grid-template-rows: repeat(2, calc(81vh));
+    gap: calc(1vh + 0.5vw);
     grid-template-columns: 1fr 1fr;
 
     .project_item:nth-child(1) {
