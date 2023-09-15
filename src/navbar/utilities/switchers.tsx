@@ -1,22 +1,22 @@
 import classes from "./switcher.module.scss";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { ThemeContext } from "../../app/ThemeContext";
+import { AppContext } from "../../app/AppContext";
 import { useContext } from "react";
 import clsx from "clsx";
 
 export const ThemeSwitch = ({ ...props }) => {
-  const themeContext = useContext(ThemeContext);
+  const appContext = useContext(AppContext);
 
   const handleChecked = () => {
-    themeContext?.setTheme((prevTheme: any) =>
+    appContext?.setTheme((prevTheme: any) =>
       prevTheme === "dark" ? "light" : "dark"
     );
   };
 
   let content;
   content =
-    themeContext && themeContext?.theme === "dark" ? <SunIcon /> : <MoonIcon />;
+    appContext && appContext?.theme === "dark" ? <SunIcon /> : <MoonIcon />;
 
   // useEffect(() => {
   //   console.log(themeContext?.theme);
@@ -28,13 +28,13 @@ export const ThemeSwitch = ({ ...props }) => {
         className={classes.switch_root}
         id={props.id}
         onCheckedChange={handleChecked}
-        checked={themeContext?.theme === "light"}
+        checked={appContext?.theme === "light"}
       >
         <SwitchPrimitive.Thumb className={classes.switch_thumb} />
       </SwitchPrimitive.Root>
       <div
         className={clsx(classes.icon, {
-          [classes.light]: themeContext?.theme === "light",
+          [classes.light]: appContext?.theme === "light",
         })}
       >
         {content}

@@ -1,0 +1,356 @@
+@import "../../../../sass/global";
+@import "../../../../sass/mixins";
+
+@mixin flexSlide($flex-direction: column) {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: $flex-direction;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin separatorHorizontal($width: 100%) {
+  width: $width;
+  height: 1px;
+  background-color: $primary-dark;
+}
+
+@mixin separatorVertical($heigth: 100%) {
+  height: $heigth;
+  width: 1px;
+  background-color: $primary-dark;
+}
+
+.light {
+  .separator_horizontal {
+    background-color: $primary-light !important;
+  }
+}
+
+//** SHARED STYLES **//
+.container {
+  position: relative;
+}
+
+.title {
+  color: $orange-600;
+  text-align: center;
+  @media screen and (min-width: $breakpoint-tablet) {
+    font-size: 1.8rem;
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    font-size: 2rem;
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: 2.4rem;
+  }
+}
+
+.text_container {
+  font-size: 0.65rem;
+  text-align: right;
+  font-style: italic;
+  line-height: 1.1rem;
+  font-weight: 300;
+  @media screen and (min-width: $breakpoint-tablet) {
+    font-size: 0.9rem;
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    font-size: 1rem;
+  }
+}
+
+.separator_horizontal {
+  @include separatorHorizontal();
+  margin-bottom: 15px;
+}
+
+//** FIRST SLIDE STYLES **//
+.first_slide {
+  @include flexSlide();
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    @include flexSlide(column-reverse);
+  }
+  @media screen and (min-width: $breakpoint-large-desktop) {
+    @include flexSlide(row);
+    .title {
+      text-align: left;
+    }
+    .text_container {
+      font-size: 1.1rem;
+      text-align: left;
+    }
+  }
+}
+
+.GIF_container {
+  width: 60vw;
+  height: auto;
+  user-select: none;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    width: 45vw;
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    width: 50vw;
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    width: 50vw;
+  }
+}
+
+//** SECOND SLIDE STYLES **//
+.second_slide {
+  @include flexSlide();
+  justify-content: end;
+
+  .container_mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px;
+  }
+
+  .title {
+    text-align: left;
+    display: flex;
+    align-items: end;
+  }
+
+  .text_container {
+    font-size: 0.65rem;
+    text-align: right;
+    font-style: italic;
+    line-height: 1.1rem;
+    font-weight: 300;
+  }
+
+  @media screen and (min-width: $breakpoint-mobile) {
+    .container_mobile {
+      grid-template-columns: 2.5fr 1fr;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    .container {
+      margin: 50px 30px;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-laptop) {
+    align-items: flex-end;
+
+    .separator_horizontal {
+      @include separatorHorizontal(60%);
+    }
+    .container {
+      margin: 50px 20px;
+      width: 45%;
+      display: grid;
+      place-items: end;
+    }
+    .title {
+      width: 100%;
+      display: flex;
+      justify-content: right;
+      text-align: right;
+    }
+
+    .text_container {
+      font-size: 1.1rem;
+      text-align: left;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    align-items: flex-end;
+    .container {
+      margin: 50px 30px;
+    }
+  }
+}
+
+.laptop_sale {
+  position: absolute;
+  top: -5vw;
+  right: -10vw;
+  width: 70vw;
+  transform: rotate(-35deg);
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    right: -150px;
+    top: -20px;
+    width: 550px;
+  }
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    width: 700px;
+  }
+}
+
+.screens_container {
+  @media screen and (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+
+  @media screen and (min-width: $breakpoint-laptop) {
+    display: block;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    div {
+      position: absolute;
+      display: grid;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.35);
+    }
+
+    .one_screen {
+      top: 11%;
+      left: -20%;
+    }
+    .two_screen {
+      top: calc(11% * 2);
+      left: 5%;
+    }
+    .three_screen {
+      top: calc(11% * 3);
+      left: 15%;
+    }
+    .four_screen {
+      top: calc(11% * 4);
+      left: 15%;
+    }
+    .five_screen {
+      top: calc(11% * 5);
+      left: 5%;
+    }
+    .six_screen {
+      top: calc(11% * 6);
+      left: -20%;
+    }
+  }
+
+  @media screen and (min-width: calc($breakpoint-desktop + 100px)) {
+    width: 40%;
+  }
+
+  @media screen and (min-width: calc($breakpoint-large-desktop + 100px)) {
+    width: 40%;
+
+    .one_screen {
+      top: -10%;
+      left: 15%;
+    }
+    .two_screen {
+      top: calc(10% * 2);
+      left: 5%;
+    }
+    .three_screen {
+      top: calc(15% * 3);
+      left: 15%;
+    }
+    .four_screen {
+      display: none;
+      top: calc(15% * 4);
+      left: -20%;
+    }
+    .five_screen {
+      top: calc(15% * 5);
+      left: 5%;
+    }
+    .six_screen {
+      display: none;
+      top: calc(15% * 6);
+      left: -20%;
+    }
+  }
+}
+
+//** THIRD SLIDE STYLES **//
+.third_slide {
+  @include flexSlide(column);
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    padding: 20px;
+    justify-content: space-between;
+    .col_container {
+      height: auto;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr;
+      .redux_img {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        width: 100%;
+        img {
+          border-radius: 20px;
+        }
+      }
+      .text_container {
+        height: 100%;
+        padding: 30px 10px 10px 20px;
+        line-height: 1.6rem;
+      }
+    }
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    padding: 20px;
+    .col_container {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 4.5fr 0 1fr;
+      .redux_img {
+        padding: 20px 40px;
+      }
+      .text_container {
+        height: 100%;
+        padding: 30px 10px 10px 20px;
+        line-height: 1.6rem;
+      }
+    }
+    .separator_vertical {
+      @include separatorVertical(90%);
+    }
+  }
+}
+
+//** FOURTH SLIDE STYLES **//
+.fourth_slide {
+  @include flexSlide(column);
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    padding: 20px;
+    .col_container {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 3fr 0 1fr;
+      .separator_vertical {
+        @include separatorVertical(90%);
+      }
+      .redux_img {
+        display: grid;
+        padding: 40px;
+        overflow: hidden;
+        width: 100%;
+        img {
+          border-radius: 20px;
+        }
+      }
+      .text_container {
+        height: 100%;
+        padding: 30px 10px 10px 20px;
+      }
+    }
+  }
+}

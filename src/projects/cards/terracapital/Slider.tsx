@@ -1,11 +1,15 @@
 import classes from "./slider.module.scss";
+import { clsx } from "clsx";
 
-import LOGIN from "./assets/GIFS/login.gif";
-import CREATE from "./assets/GIFS/createClient.gif";
-import TABLEFX from "./assets/GIFS/tableFunctionalities.gif";
+import {
+  FirstSlide,
+  SecondSlide,
+  ThirdSlide,
+  FourthSlide,
+} from "./Slides/Slides";
 
-import { useEffect, Dispatch, SetStateAction } from "react";
-import { useTransition, animated, useSpringRef } from "@react-spring/web";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useTransition, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,12 +28,33 @@ interface SliderI {
 }
 
 export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
-  const slides = [FirstSlide, SecondSlide, ThirdSlide];
-  const transRef = useSpringRef();
+  const slides = [SecondSlide, FirstSlide, ThirdSlide, FourthSlide];
+  const [active, setActive] = useState([
+    { id: 0, value: false },
+    { id: 1, value: false },
+  ]);
+
+  const getActive = (id: number) => {
+    const state = active.find((item) => item.id === id);
+    return state ? state.value : null;
+  };
+
+  useEffect(() => {
+    console.log(getActive(0));
+  }, [active]);
+
+  const updateActive = (id: number, newState: boolean) => {
+    setActive((prevState) => {
+      return prevState.map((item) => {
+        if (item.id === id) {
+          return { ...item, value: newState };
+        }
+        return item;
+      });
+    });
+  };
 
   const transitions = useTransition(index, {
-    ref: transRef,
-
     from: {
       opacity: 0,
       transform: `translate3d(${clicked === "left" ? "-100%" : "100%"},0,0)`,
@@ -45,20 +70,18 @@ export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
     initial: null,
   });
 
-  useEffect(() => {
-    transRef.start();
-  }, [index]);
-
   const nextSlide = () => {
-    setIndex((prevState) => (prevState + 1) % 3);
+    setIndex((prevState) => (prevState + 1) % 4);
     setClicked("right");
+    // updateActive(1, true);
   };
   const prevSlide = () => {
     setIndex((prevState) => {
-      const newIndex = (prevState - 1 + 3) % 3;
+      const newIndex = (prevState - 1 + 4) % 4;
       return newIndex;
     });
     setClicked("left");
+    // updateActive(0, true);
   };
 
   const bind = useDrag(
@@ -85,11 +108,7 @@ export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
   );
 
   return (
-    <div
-      className={classes.swiper}
-      {...bind()}
-      style={{ touchAction: "none" }} // Add this line
-    >
+    <div className={classes.swiper} {...bind()} style={{ touchAction: "none" }}>
       {transitions((style, index) => {
         const SlideElement = slides[index];
         return (
@@ -98,56 +117,32 @@ export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
           </animated.div>
         );
       })}
-      <div className={classes.button_container}>
-        <div className={classes.chevron_left} onClick={prevSlide}>
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </div>
-        <div className={classes.chevron_right} onClick={nextSlide}>
-          <FontAwesomeIcon icon={faChevronRight} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const FirstSlide = () => {
-  return (
-    <div className={classes.first_slide}>
-      <h3 className={classes.title}>Login & authentication</h3>
-      <div className={classes.GIF_container}>
-        <img src={LOGIN} alt="Login GIF" draggable={false} />
-      </div>
-      <span>
-        Using <strong>JWT tokens</strong> and <strong>HTTP cookies</strong>
-      </span>
-    </div>
-  );
-};
-
-const SecondSlide = () => {
-  return (
-    <div className={classes.first_slide}>
-      <h3 className={classes.title}>REST services consumption</h3>
-      <div className={classes.GIF_container}>
-        <img src={CREATE} alt="Login GIF" draggable={false} />
-      </div>
-      <span>
-        Using <strong>JWT tokens</strong> and <strong>HTTP cookies</strong>
-      </span>
-    </div>
-  );
-};
-
-const ThirdSlide = () => {
-  return (
-    <div className={classes.first_slide}>
-      <h3 className={classes.title}>Table functionalities</h3>
-      <div className={classes.GIF_container}>
-        <img src={TABLEFX} alt="Login GIF" draggable={false} />
-      </div>
-      <span>
-        Using <strong>JWT tokens</strong> and <strong>HTTP cookies</strong>
-      </span>
+      <button
+        className={clsx(classes.chevron_left, {
+          [classes.active]: getActive(0),
+        })}
+        onClick={prevSlide}
+        onBlur={() => updateActive(0, false)}
+        onMouseEnter={() => updateActive(0, true)}
+        onMouseLeave={() => updateActive(0, false)}
+        onTouchStart={() => updateActive(0, true)}
+        onTouchEnd={() => updateActive(0, false)}
+      >
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+      <button
+        className={clsx(classes.chevron_right, {
+          [classes.active]: getActive(1),
+        })}
+        onClick={nextSlide}
+        onBlur={() => updateActive(1, false)}
+        onMouseEnter={() => updateActive(1, true)}
+        onMouseLeave={() => updateActive(1, false)}
+        onTouchStart={() => updateActive(1, true)}
+        onTouchEnd={() => updateActive(1, false)}
+      >
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
     </div>
   );
 };

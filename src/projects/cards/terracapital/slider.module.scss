@@ -1,13 +1,6 @@
 @import "../../../sass/global";
 @import "../../../sass/mixins";
 
-@mixin flexSlide {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
 //** SWIPER STYLES **//
 .swiper {
   position: relative;
@@ -24,85 +17,66 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 20px;
-  @media screen and (min-width: $breakpoint-tablet) {
-    height: 95%;
-  }
 }
 
-.first_slide {
-  @include flexSlide;
-  gap: 15px;
-  h3 {
-    white-space: nowrap;
-    color: $orange-600;
-  }
-
-  span {
-    padding: 0 15px;
-    font-size: 0.8rem;
-    font-weight: 300;
-    text-align: justify;
-    text-decoration: dotted;
-  }
-}
-
-.GIF_container {
-  width: calc(60%);
-  height: auto;
-  user-select: none;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  @media screen and (min-width: 530px) {
-    width: 300px;
-  }
-  @media screen and (min-width: $breakpoint-tablet) {
-    width: 40vw;
-  }
-}
-.button_container {
-  display: none;
-}
 /// ***************************
 /// BREAKPOINTS
 /// ***************************
-@mixin chevron {
-  aspect-ratio: 1/1;
-  width: 40px;
-  display: grid;
-  place-items: center;
+@mixin chevron() {
+  all: unset;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: calc(140% - 20px);
+  width: 100%;
   border-radius: 100%;
-  color: $indigo-700;
+  color: transparent;
+  svg {
+    font-size: 5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   &:hover {
     cursor: pointer;
-    background-color: $gray-200;
   }
+}
+
+.chevron_left,
+.chevron_right {
+  display: none;
 }
 
 @media screen and (min-width: $breakpoint-tablet) {
   .swiper {
     width: 100%;
   }
-
-  .button_container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 25px 40px;
-    .chevron_left,
-    .chevron_right {
-      @include chevron;
+  .chevron_left {
+    @include chevron;
+    left: -85%;
+    svg {
+      left: 88%;
     }
+  }
+  .chevron_right {
+    @include chevron;
+    right: -85%;
+    svg {
+      right: 88%;
+    }
+  }
+  .active {
+    color: $primary-light;
+    background-color: $primary-dark;
+    opacity: 0.3;
+  }
+}
+
+@media screen and (min-width: $breakpoint-desktop) {
+  .chevron_left > svg {
+    left: 90%;
+  }
+  .chevron_right > svg {
+    right: 90%;
   }
 }

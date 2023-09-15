@@ -1,6 +1,6 @@
 import classes from "./research.module.scss";
 
-import { ThemeContext } from "../../../app/themeContext";
+import { ThemeContext } from "../../../app/AppContext";
 import { useContext } from "react";
 
 import { animated } from "@react-spring/web";

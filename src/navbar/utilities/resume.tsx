@@ -2,14 +2,14 @@ import classes from "./resume.module.scss";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
-import { ThemeContext } from "../../app/ThemeContext";
+import { AppContext } from "../../app/AppContext";
 import { useContext } from "react";
 
 export const ResumeDialog = () => {
-  const themeContext = useContext(ThemeContext);
+  const appContext = useContext(AppContext);
 
   return (
-    <Dialog.Root open={themeContext?.open} onOpenChange={themeContext?.setOpen}>
+    <Dialog.Root open={appContext?.open} onOpenChange={appContext?.setOpen}>
       <Dialog.Portal>
         <Dialog.Overlay className={classes.overlay} />
         <Dialog.Content className={classes.content}>

@@ -1,9 +1,9 @@
 import classes from "./landing.module.scss";
 import { VLine, HLine } from "../shared/lines";
-import { HoverComponent } from "./carousel/HoverCard";
+import { HoverComponent } from "./hovercard/HoverCard";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 
-import { ThemeContext } from "../app/themeContext";
+import { AppContext } from "../app/AppContext";
 import { useContext, useState } from "react";
 import { clsx } from "clsx";
 import { useSpring, animated } from "@react-spring/web";
@@ -16,8 +16,8 @@ import NODEJS from "./svg/node.svg";
 import REACT from "./svg/react.svg";
 
 export const Landing = ({ ...props }) => {
-  const themeContext = useContext(ThemeContext);
-  const light = themeContext?.theme === "light";
+  const appContext = useContext(AppContext);
+  const light = appContext?.theme === "light";
   const [arrowHover, setArrowHover] = useState<boolean>();
 
   const iconPaths = [

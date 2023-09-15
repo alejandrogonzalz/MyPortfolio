@@ -6,14 +6,14 @@ import { About } from "./about/About";
 import { useScroll, animated } from "@react-spring/web";
 import { useState } from "react";
 
-import { ThemeContext } from "./app/ThemeContext";
+import { AppContext } from "./app/AppContext";
 import { useContext } from "react";
 import { Space } from "./about/space";
 import clsx from "clsx";
 
 export const App = () => {
-  const themeContext = useContext(ThemeContext);
-  const light = themeContext?.theme === "light";
+  const appContext = useContext(AppContext);
+  const light = appContext?.theme === "light";
 
   const [opacity, setOpacity] = useState(1);
 

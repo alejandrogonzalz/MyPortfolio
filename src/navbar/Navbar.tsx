@@ -3,7 +3,7 @@ import classes from "./navbar.module.scss";
 import { Outlet } from "react-router-dom";
 import { NavElements } from "./NavElements";
 import { ThemeSwitch } from "./utilities/switchers";
-import { ThemeContext } from "../app/themeContext";
+import { AppContext } from "../app/AppContext";
 import { useContext, useState, useEffect, useRef } from "react";
 
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
@@ -12,7 +12,7 @@ import clsx from "clsx";
 import { ResumeDialog } from "./utilities/resume";
 
 export const Navbar = () => {
-  const themeContext = useContext(ThemeContext);
+  const appContext = useContext(AppContext);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [navOpen, setNavOpen] = useState(false);
   const navMobileRef = useRef<HTMLInputElement>(null);
@@ -56,7 +56,7 @@ export const Navbar = () => {
           navOpen={navOpen}
           setNavOpen={setNavOpen}
           className={clsx(classes.mobile, {
-            [classes.mobile_light]: themeContext?.theme === "light",
+            [classes.mobile_light]: appContext?.theme === "light",
           })}
         />
       </>
@@ -70,7 +70,7 @@ export const Navbar = () => {
     <>
       <div
         className={clsx(classes.navbar, {
-          [classes.light]: themeContext?.theme === "light",
+          [classes.light]: appContext?.theme === "light",
         })}
       >
         <>

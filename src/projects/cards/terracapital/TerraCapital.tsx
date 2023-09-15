@@ -8,8 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import * as Separator from "@radix-ui/react-separator";
 
-import { ThemeContext } from "../../../app/themeContext";
-import { useContext, useState, useEffect } from "react";
+import { AppContext, useScreenWidth } from "../../../app/AppContext";
+import { useContext, useState } from "react";
 import { clsx } from "clsx";
 import { Slider } from "./Slider";
 
@@ -20,36 +20,26 @@ import SASS from "./assets/sass.svg";
 import REACT from "./assets/react.svg";
 
 export const TerraCapitalCard = () => {
-  const themeContext = useContext(ThemeContext);
+  const appContext = useContext(AppContext);
+
   const [index, setIndex] = useState<number>(0);
   const [clicked, setClicked] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isButtonHover, setIsButtonHover] = useState<boolean>(false);
 
-  const light = themeContext?.theme === "light";
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  let content;
+  const light = appContext?.theme === "light";
+  const screenWidth = useScreenWidth();
 
   const iconPaths = [{ icon: HTML5 }, { icon: SASS }, { icon: REACT }];
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const nextSlide = () => {
-    setIndex((prevState) => (prevState + 1) % 3);
+    setIndex((prevState) => (prevState + 1) % 4);
     setClicked("right");
   };
 
   const prevSlide = () => {
     setIndex((prevState) => {
-      const newIndex = (prevState - 1 + 3) % 3;
+      const newIndex = (prevState - 1 + 4) % 4;
       return newIndex;
     });
     setClicked("left");
@@ -63,7 +53,7 @@ export const TerraCapitalCard = () => {
 
   const buttonHoverProps = useSpring({
     transform: isButtonHover ? "scale(1.15)" : "scale(1)",
-    config: { tension: 400, friction: 15 }, // Adjust the values as needed for your desired bounce effect
+    config: { tension: 400, friction: 15 },
   });
 
   const ButtonMore = (
@@ -81,6 +71,7 @@ export const TerraCapitalCard = () => {
     </animated.button>
   );
 
+  let content;
   if (screenWidth < 760) {
     content = (
       <>
@@ -121,7 +112,7 @@ export const TerraCapitalCard = () => {
             {ButtonMore}
           </div>
         </div>
-        <div className={classes.mid_container}>
+        <div className={classes.slider_container}>
           <Separator.Root className={classes.separator_horizontal} decorative />
 
           <div className={classes.chevron_left} onClick={prevSlide}>
@@ -157,11 +148,23 @@ export const TerraCapitalCard = () => {
     );
   } else {
     content = (
-      <div className={classes.mid_container}>
+      <div className={classes.card_container_laptop}>
         <div className={classes.left_container}>
           <div className={classes.title_container}>
             <h2>TerraCapital</h2>
           </div>
+          <Separator.Root className={classes.separator_horizontal} decorative />
+          <div className={classes.icon_container}>
+            {iconPaths.map((path, index) => {
+              return (
+                <div className={classes.icon} key={index}>
+                  <img src={path.icon} alt={`Icon ${index + 1}`} />
+                </div>
+              );
+            })}
+          </div>
+          <Separator.Root className={classes.separator_horizontal} decorative />
+
           <div className={classes.content_container}>
             <span className={classes.content_text}>
               Dynamic web application aimed at streamlining the financial
@@ -173,26 +176,16 @@ export const TerraCapitalCard = () => {
             </span>
             {ButtonMore}
           </div>
+          <Separator.Root className={classes.separator_vertical} decorative />
         </div>
-        <Separator.Root className={classes.separator_horizontal} decorative />
+
         <div className={classes.right_container}>
-          <div className={classes.icon_container}>
-            {iconPaths.map((path, index) => {
-              return (
-                <div className={classes.icon} key={index}>
-                  <img src={path.icon} alt={`Icon ${index + 1}`} />
-                </div>
-              );
-            })}
-          </div>
-          <div className={classes.right_vessel}>
-            <Slider
-              index={index}
-              setIndex={setIndex}
-              clicked={clicked}
-              setClicked={setClicked}
-            />
-          </div>
+          <Slider
+            index={index}
+            setIndex={setIndex}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
         </div>
       </div>
     );

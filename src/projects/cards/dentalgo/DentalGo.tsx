@@ -5,7 +5,7 @@ import SASS from "./assets/sass.svg";
 import JS from "./assets/js.svg";
 
 import * as Separator from "@radix-ui/react-separator";
-import { ThemeContext } from "../../../app/themeContext";
+import { AppContext } from "../../../app/AppContext";
 import { useContext, useState } from "react";
 
 import { animated, useSpring } from "@react-spring/web";
@@ -13,8 +13,8 @@ import { clsx } from "clsx";
 
 export const DentalGoCard = () => {
   let content;
-  const themeContext = useContext(ThemeContext);
-  const light = themeContext?.theme === "light";
+  const appContext = useContext(AppContext);
+  const light = appContext?.theme === "light";
 
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isButtonHover, setIsButtonHover] = useState<boolean>(false);

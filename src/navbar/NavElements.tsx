@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 
 import { clsx } from "clsx";
-import { ThemeContext } from "../app/ThemeContext";
+import { AppContext } from "../app/AppContext";
 import { forwardRef, ForwardedRef, useContext } from "react";
 
 interface NavElement {
@@ -53,7 +53,7 @@ export const FnElements = () => {
 };
 
 const NavElement = ({ text, path }: NavElement) => {
-  const themeContext = useContext(ThemeContext);
+  const appContext = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ const NavElement = ({ text, path }: NavElement) => {
     } else if (typeof path === "string") {
       navigate(path);
     } else if (text === "Resume") {
-      themeContext?.setOpen(true);
+      appContext?.setOpen(true);
     }
   };
 
