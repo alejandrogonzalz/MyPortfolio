@@ -69,6 +69,9 @@ const NavElement = ({ text, path }: NavElement) => {
       navigate("/");
     } else if (typeof path === "string") {
       navigate(path);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
     } else if (text === "Resume") {
       appContext?.setOpen(true);
     }
