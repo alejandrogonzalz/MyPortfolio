@@ -1,6 +1,7 @@
 @import "../../../sass/global";
 @import "../../../sass/mixins";
 
+
 //** SWIPER STYLES **//
 .swiper {
   position: relative;
@@ -79,4 +80,12 @@
   .chevron_right > svg {
     right: 90%;
   }
+}
+
+.light{
+  .active{
+    background-color: $orange-400;
+    color: $primary-dark;
+    opacity: 0.4;
+  }  
 }

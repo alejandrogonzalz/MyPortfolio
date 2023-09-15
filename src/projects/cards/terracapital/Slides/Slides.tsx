@@ -3,7 +3,6 @@ import { clsx } from "clsx";
 
 import LOGIN from "../assets/GIFS/login.gif";
 import TABLEFX from "../assets/GIFS/tableFX.gif";
-import TABLEFX2 from "../assets/GIFS/tableFX2.gif";
 
 import LAPSALE from "../assets/second/lapSale.png";
 

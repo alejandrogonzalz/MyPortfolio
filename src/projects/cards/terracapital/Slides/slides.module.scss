@@ -69,6 +69,8 @@
 //** FIRST SLIDE STYLES **//
 .first_slide {
   @include flexSlide();
+  padding: 30px;
+  gap: 20px;
 
   @media screen and (min-width: $breakpoint-tablet) {
     @include flexSlide(column-reverse);
