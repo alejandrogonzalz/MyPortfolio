@@ -12,6 +12,7 @@ import { AppContext, useScreenWidth } from "../../../app/AppContext";
 import { useContext, useState } from "react";
 import { clsx } from "clsx";
 import { Slider } from "./Slider";
+import { useSpringButton } from "../sharedFX";
 
 import { animated, useSpring } from "@react-spring/web";
 
@@ -26,9 +27,13 @@ export const TerraCapitalCard = () => {
   const [clicked, setClicked] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isButtonHover, setIsButtonHover] = useState<boolean>(false);
+  const [isButtonCodeHover, setIsButtonCodeHover] = useState<boolean>(false);
 
   const light = appContext?.theme === "light";
   const screenWidth = useScreenWidth();
+
+  const buttonMoreProps = useSpringButton(isButtonHover);
+  const buttonCodeProps = useSpringButton(isButtonCodeHover);
 
   const iconPaths = [{ icon: HTML5 }, { icon: SASS }, { icon: REACT }];
 
@@ -51,15 +56,10 @@ export const TerraCapitalCard = () => {
     config: { mass: 5, tension: 600, friction: 75 },
   });
 
-  const buttonHoverProps = useSpring({
-    transform: isButtonHover ? "scale(1.15)" : "scale(1)",
-    config: { tension: 400, friction: 15 },
-  });
-
   const ButtonMore = (
     <animated.button
       className={classes.button_more}
-      style={{ ...buttonHoverProps }}
+      style={{ ...buttonMoreProps }}
       onClick={() => setIsFlipped(!isFlipped)}
       onMouseEnter={() => setIsButtonHover(true)}
       onMouseLeave={() => setIsButtonHover(false)}
@@ -71,6 +71,19 @@ export const TerraCapitalCard = () => {
     </animated.button>
   );
 
+  const buttonCode = (
+    <animated.button
+      className={classes.button_code}
+      style={{ ...buttonCodeProps }}
+      onMouseEnter={() => setIsButtonCodeHover(true)}
+      onMouseLeave={() => setIsButtonCodeHover(false)}
+      onFocus={() => setIsButtonCodeHover(true)}
+      onBlur={() => setIsButtonCodeHover(false)}
+    >
+      <FontAwesomeIcon icon={faCode} /> Code
+    </animated.button>
+  );
+
   let content;
   if (screenWidth < 760) {
     content = (
@@ -78,7 +91,7 @@ export const TerraCapitalCard = () => {
         <div className={classes.top_container}>
           <div className={classes.title_container}>
             <div className={classes.title_wrapper}>
-              <h2>TerraCapital</h2>
+              <h1>TerraCapital</h1>
 
               <div className={classes.icon_container}>
                 <Separator.Root
@@ -102,12 +115,12 @@ export const TerraCapitalCard = () => {
 
           <div className={classes.content_container}>
             <span className={classes.content_text}>
-              Dynamic web application aimed at streamlining the financial
-              management processes, including invoicing, expense tracking, and
-              client portfolio management, for a real estate company. This
-              application was built using the React framework, leveraging
-              essential libraries such as React Router, Redux Toolkit, and
-              TanStack Table.
+              Dynamic web application aimed at streamlining the{" "}
+              <strong>financial management processes</strong>, including
+              invoicing, expense tracking, and client portfolio management, for
+              a real estate company. This application was built using the{" "}
+              <strong>React framework</strong>, leveraging essential libraries
+              such as React Router, Redux Toolkit, and TanStack Table.
             </span>
             {ButtonMore}
           </div>
@@ -139,11 +152,7 @@ export const TerraCapitalCard = () => {
           />
           <Separator.Root className={classes.separator_horizontal} decorative />
         </div>
-        <div className={classes.button_container}>
-          <button>
-            <FontAwesomeIcon icon={faCode} /> Code
-          </button>
-        </div>
+        <div className={classes.button_container}>{buttonCode}</div>
       </>
     );
   } else {
@@ -151,7 +160,7 @@ export const TerraCapitalCard = () => {
       <div className={classes.card_container_laptop}>
         <div className={classes.left_container}>
           <div className={classes.title_container}>
-            <h2>TerraCapital</h2>
+            <h1>TerraCapital</h1>
           </div>
           <Separator.Root className={classes.separator_horizontal} decorative />
           <div className={classes.icon_container}>
@@ -166,15 +175,19 @@ export const TerraCapitalCard = () => {
           <Separator.Root className={classes.separator_horizontal} decorative />
 
           <div className={classes.content_container}>
-            <span className={classes.content_text}>
-              Dynamic web application aimed at streamlining the financial
-              management processes, including invoicing, expense tracking, and
-              client portfolio management, for a real estate company. This
-              application was built using the React framework, leveraging
-              essential libraries such as React Router, Redux Toolkit, and
-              TanStack Table.
-            </span>
-            {ButtonMore}
+            <div className={classes.content_text}>
+              Dynamic web application aimed at streamlining the{" "}
+              <strong>financial management processes</strong>, including
+              invoicing, expense tracking, and client portfolio management, for
+              a real estate company. This application was built using the{" "}
+              <strong>React framework</strong>, leveraging essential libraries
+              such as React Router, Redux Toolkit, and TanStack Table.
+            </div>
+
+            <div className={classes.button_container_large}>
+              {buttonCode}
+              {ButtonMore}
+            </div>
           </div>
           <Separator.Root className={classes.separator_vertical} decorative />
         </div>

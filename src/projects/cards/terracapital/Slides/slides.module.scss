@@ -26,6 +26,9 @@
   .separator_horizontal {
     background-color: $primary-light !important;
   }
+  strong {
+    color: $green-400 !important;
+  }
 }
 
 //** SHARED STYLES **//
@@ -53,11 +56,18 @@
   font-style: italic;
   line-height: 1.1rem;
   font-weight: 300;
+  strong {
+    color: $green-900;
+  }
   @media screen and (min-width: $breakpoint-tablet) {
-    font-size: 0.9rem;
+    font-size: 0.95rem !important;
+    line-height: 2rem !important;
   }
   @media screen and (min-width: $breakpoint-laptop) {
-    font-size: 1rem;
+    font-size: 1.2rem !important;
+  }
+  @media screen and (min-width: $breakpoint-large-desktop) {
+    font-size: 1.3rem !important;
   }
 }
 
@@ -66,10 +76,12 @@
   margin-bottom: 15px;
 }
 
-//** FIRST SLIDE STYLES **//
+/////////////////////////////
+//** FIRST SLIDE STYLES **///
+/////////////////////////////
 .first_slide {
   @include flexSlide();
-  padding: 30px;
+  padding: 15px 20px;
   gap: 20px;
 
   @media screen and (min-width: $breakpoint-tablet) {
@@ -107,7 +119,9 @@
   }
 }
 
+/////////////////////////////
 //** SECOND SLIDE STYLES **//
+/////////////////////////////
 .second_slide {
   @include flexSlide();
   justify-content: end;
@@ -278,13 +292,42 @@
   }
 }
 
+////////////////////////////
 //** THIRD SLIDE STYLES **//
+////////////////////////////
 .third_slide {
   @include flexSlide(column);
+  padding: 15px 20px;
+  text-align: justify;
+
+  .redux_img {
+    img {
+      border-radius: 5px;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-mobile) {
+    text-align: justify;
+
+    .col_container {
+      margin-bottom: 10px;
+    }
+
+    .text_container {
+      font-size: 0.75rem;
+    }
+
+    .redux_img {
+      width: 82%;
+      img {
+        border-radius: 5px;
+      }
+    }
+  }
 
   @media screen and (min-width: $breakpoint-tablet) {
     padding: 20px;
-    justify-content: space-between;
+    justify-content: center;
     .col_container {
       height: auto;
       display: grid;
@@ -296,17 +339,17 @@
         overflow: hidden;
         width: 100%;
         img {
-          border-radius: 20px;
+          border-radius: 10px;
         }
       }
       .text_container {
         height: 100%;
         padding: 30px 10px 10px 20px;
-        line-height: 1.6rem;
       }
     }
   }
-  @media screen and (min-width: $breakpoint-desktop) {
+
+  @media screen and (min-width: $breakpoint-large-desktop) {
     padding: 20px;
     .col_container {
       display: grid;
@@ -327,32 +370,126 @@
   }
 }
 
+/////////////////////////////
 //** FOURTH SLIDE STYLES **//
+////////////////////////////
+
 .fourth_slide {
   @include flexSlide(column);
+  padding: 10px 0 10px 20px;
+
+  .container {
+    padding-right: 20px;
+    .text_container {
+      margin-top: 5px;
+    }
+  }
+
+  .img_container {
+    position: relative;
+  }
+
+  .img {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .overlay {
+    border-radius: 8px 0 0 8px;
+    position: absolute;
+    opacity: 0.25;
+    width: 100%;
+    height: 100%;
+    background-color: $primary-dark;
+    z-index: 3;
+  }
+
+  @media screen and (min-width: calc($breakpoint-tablet - 120px)) {
+    padding: 10px 0 10px 50px;
+    justify-content: space-between;
+    .img_container {
+      height: 80%;
+      .img,
+      .overlay {
+        height: 80%;
+      }
+    }
+  }
 
   @media screen and (min-width: $breakpoint-tablet) {
-    padding: 20px;
+    padding: 20px 0 20px 50px;
+    justify-content: center;
+
+    .img_container {
+      height: 100%;
+      .img,
+      .overlay {
+        height: 100%;
+      }
+    }
     .col_container {
       display: grid;
       align-items: center;
-      grid-template-columns: 3fr 0 1fr;
-      .separator_vertical {
-        @include separatorVertical(90%);
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    .container {
+      padding-right: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .separator_horizontal {
+      width: 100%;
+      position: absolute;
+    }
+
+    .title {
+      text-align: left;
+    }
+
+    .content_container {
+      .__right {
+        right: -30%;
       }
-      .redux_img {
-        display: grid;
-        padding: 40px;
-        overflow: hidden;
-        width: 100%;
-        img {
-          border-radius: 20px;
-        }
+      .__left {
+        left: -30%;
       }
-      .text_container {
-        height: 100%;
-        padding: 30px 10px 10px 20px;
+    }
+
+    .text_container {
+      margin: 5px;
+    }
+
+    .img_container {
+      padding-left: 35px;
+      position: relative;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-large-desktop) {
+    padding: 20px 0 20px 20px;
+    .col_container {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .content_container {
+      .__right {
+        right: -30%;
       }
+      .__left {
+        left: -25%;
+      }
+    }
+
+    .container,
+    .img_container {
+      padding: 0;
     }
   }
 }

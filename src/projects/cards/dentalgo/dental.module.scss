@@ -19,7 +19,7 @@
     background-color: $primary-light;
     color: $primary-dark;
   }
-  .left_container {
+  .right_container {
     border-color: $primary-light;
   }
 }
@@ -40,7 +40,16 @@
   display: grid;
   grid-template-columns: 2fr 0.5fr;
   position: relative;
-  height: 50%;
+  height: 60%;
+  @media screen and (min-width: $breakpoint-tablet) {
+    height: 80%;
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    height: 70%;
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    height: 50%;
+  }
 }
 
 .right_container {
@@ -69,25 +78,147 @@
 
 .left_container {
   height: 100%;
+
   .title {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    height: 2.5rem;
+    @include cardTitle;
   }
 
   .content_container {
     height: calc(100% - 5rem);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    gap: 15px;
     padding: 10px 25px;
+    @media screen and (min-width: $breakpoint-tablet) {
+      height: calc(100% - 5rem);
+    }
 
     .content_text {
-      text-align: justify;
-      font-weight: 300;
+      @include cardContentText;
+    }
+  }
+}
+
+//** BOTTOM CONTAINER CSS ** //
+
+.bottom_container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: calc($breakpoint-mobile - 100px)) {
+    height: 70%;
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    height: 50%;
+  }
+  @media screen and (min-width: $breakpoint-large-desktop) {
+    height: 65%;
+  }
+}
+
+.button_container {
+  display: flex;
+  padding: 10px 0 0;
+  justify-content: center;
+  gap: 70px;
+  button {
+    @include buttonCode;
+  }
+}
+
+.img_container {
+  position: relative;
+  height: 100%;
+
+  div {
+    position: absolute;
+    bottom: 3%;
+  }
+  .desktop {
+    left: 5%;
+    transform: translateX(-5%);
+    width: 100%;
+  }
+  .tablet {
+    left: 100%;
+    transform: translateX(-100%);
+    width: 35%;
+  }
+  .mobile {
+    width: 17%;
+    left: 70%;
+    transform: translateX(-70%);
+  }
+
+  @media screen and (min-width: $breakpoint-mobile) {
+    div {
+      bottom: 0;
+    }
+    .desktop {
+      left: 5%;
+      transform: translateX(-5%);
+      width: 85%;
+    }
+    .tablet {
+      left: 100%;
+      transform: translateX(-100%);
+      width: 30%;
+    }
+    .mobile {
+      width: 15%;
+      left: 70%;
+      transform: translateX(-70%);
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    div {
+      bottom: 10%;
+    }
+    .desktop {
+      left: 20%;
+      transform: translateX(-20%);
+      width: 80%;
+    }
+    .tablet {
+      left: 80%;
+      transform: translateX(-80%);
+
+      width: 30%;
+    }
+    .mobile {
+      width: 13%;
+      left: 60%;
+      transform: translateX(-60%);
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    div {
+      bottom: 10%;
+    }
+    .desktop {
+      left: 20%;
+      transform: translateX(-20%);
+      width: 65%;
+    }
+    .tablet {
+      left: 80%;
+      transform: translateX(-80%);
+
+      width: 25%;
+    }
+    .mobile {
+      width: 10%;
+      left: 65%;
+      transform: translateX(-65%);
+    }
+  }
+  @media screen and (min-width: calc($breakpoint-desktop + 150px)) {
+    div {
+      bottom: 0;
     }
   }
 }

@@ -2,7 +2,7 @@ import classes from "./slides.module.scss";
 import { clsx } from "clsx";
 
 import LOGIN from "../assets/GIFS/login.gif";
-import TABLEFX from "../assets/GIFS/tableFX.gif";
+import TABLEFX from "../assets/GIFS/tableFX2.gif";
 
 import LAPSALE from "../assets/second/lapSale.png";
 
@@ -12,6 +12,7 @@ import contractAdded from "../assets/second/contractAdded.png";
 import toApprove from "../assets/second/toApprove.png";
 
 import REDUX from "../assets/redux.png";
+import REDUX_LIGHT from "../assets/redux_light.png";
 
 import * as Separator from "@radix-ui/react-separator";
 import { useContext } from "react";
@@ -193,16 +194,24 @@ export const ThirdSlide = () => {
 
           <div className={classes.col_container}>
             <span className={classes.text_container}>
-              In our application, Redux Toolkit plays a central role to
-              efficiently manage the application's state, making it easier to
-              track changes, handle authentication, and ensure a consistent user
-              experience throughout the app.
+              In our application, <strong>Redux Toolkit</strong> plays a central
+              role to manage the <strong>application's state</strong>, tracking
+              changes, handling authentication, and ensuring a consistent user
+              experience throughout the app
             </span>
           </div>
         </div>
 
         <div className={classes.redux_img}>
-          <img src={REDUX} alt="Sale screen in laptop" draggable={false} />
+          {light ? (
+            <img
+              src={REDUX_LIGHT}
+              alt="Sale screen in laptop"
+              draggable={false}
+            />
+          ) : (
+            <img src={REDUX} alt="Default image" draggable={false} />
+          )}
         </div>
       </div>
     );
@@ -218,15 +227,23 @@ export const ThirdSlide = () => {
 
           <div className={classes.col_container}>
             <div className={classes.redux_img}>
-              <img src={REDUX} alt="Sale screen in laptop" draggable={false} />
+              {light ? (
+                <img
+                  src={REDUX_LIGHT}
+                  alt="Sale screen in laptop"
+                  draggable={false}
+                />
+              ) : (
+                <img src={REDUX} alt="Default image" draggable={false} />
+              )}
             </div>
 
             <Separator.Root className={classes.separator_vertical} decorative />
             <span className={classes.text_container}>
-              In our application, Redux Toolkit plays a central role to
-              efficiently manage the application's state, making it easier to
-              track changes, handle authentication, and ensure a consistent user
-              experience throughout the app.
+              <strong>Redux Toolkit</strong> plays a central role to efficiently
+              manage the <strong>application's state</strong>, making it easier
+              to track changes, handle authentication, and ensure a consistent
+              user experience throughout the app
             </span>
           </div>
         </div>
@@ -246,43 +263,64 @@ export const FourthSlide = () => {
 
   if (screenWidth < 760) {
     content = (
-      <div className={clsx(classes.first_slide, { [classes.light]: light })}>
-        <div>
+      <div className={clsx(classes.fourth_slide, { [classes.light]: light })}>
+        <div className={classes.container}>
           <div className={classes.title}>
-            <h3>Login & authentication</h3>
+            <h3>Table functionalities</h3>
           </div>
-          <span className={classes.text_container}>
-            Using <strong>JWT tokens</strong> and <strong>HTTP cookies</strong>
-          </span>
+          <div className={classes.content_container}>
+            <div className={classes.text_container}>
+              <strong>TanStack Table</strong> plays a pivotal role in our
+              application by providing robust functionality for data management,
+              such as <strong>filtering</strong>, <strong>sorting</strong>, and
+              dynamic data rendering.
+            </div>
+          </div>
         </div>
-        <div className={classes.GIF_container}>
-          <img src={LOGIN} alt="Login GIF" draggable={false} />
+
+        <div className={classes.img_container}>
+          <div className={classes.overlay} />
+          <div className={classes.img}>
+            <img src={TABLEFX} alt="Sale screen in laptop" draggable={false} />
+          </div>
         </div>
       </div>
     );
   } else {
     content = (
       <div className={clsx(classes.fourth_slide, { [classes.light]: light })}>
-        <div className={classes.container}>
-          <div className={classes.col_container}>
+        <div className={classes.col_container}>
+          <div className={classes.container}>
             <div className={classes.title}>
               <h3>Table functionalities</h3>
+            </div>
+            <div className={classes.content_container}>
               <Separator.Root
-                className={classes.separator_horizontal}
+                className={clsx(classes.separator_horizontal, classes.__left)}
+                decorative
+              />
+              <div className={classes.text_container}>
+                <strong>TanStack Table</strong> plays a pivotal role in our
+                application by providing robust functionality for data
+                management, such as <strong>filtering</strong>,{" "}
+                <strong>sorting</strong>, and dynamic data rendering.
+              </div>
+              <Separator.Root
+                className={clsx(classes.separator_horizontal, classes.__right)}
                 decorative
               />
             </div>
-            <Separator.Root className={classes.separator_vertical} decorative />
-            <span className={classes.text_container}>
-              In our application, <strong>Redux Toolkit</strong> plays a central
-              role to efficiently manage the application's state, making it
-              easier to track changes, handle authentication, and ensure a
-              consistent user experience throughout the app.
-            </span>
           </div>
 
-          <div className={classes.redux_img}>
-            <img src={TABLEFX} alt="Sale screen in laptop" draggable={false} />
+          <div className={classes.img_container}>
+            <div className={classes.overlay} />
+            <div className={classes.img}>
+              <img
+                src={TABLEFX}
+                alt="Sale screen in laptop"
+                draggable={false}
+              />
+            </div>
           </div>
         </div>
       </div>

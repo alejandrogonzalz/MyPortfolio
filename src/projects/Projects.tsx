@@ -25,7 +25,7 @@ export const Projects = () => {
       <div className={clsx(classes.body, { [classes.light]: light })}>
         <div className={classes.project_container}>
           <HLine className={classes.horizontal_line}>
-            <h1>Projects</h1>
+            <h1 className={classes.main_title}>Projects</h1>
           </HLine>
 
           <div className={classes.project_wrapper}>

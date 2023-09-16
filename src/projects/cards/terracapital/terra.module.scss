@@ -84,6 +84,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include cardTitle;
   }
 
   .content_container {
@@ -93,10 +94,7 @@
     padding: 0 25px;
 
     .content_text {
-      text-align: justify;
-      font-weight: 300;
-      font-size: 0.85rem;
-      line-height: 1.4rem;
+      @include cardContentText;
     }
   }
   @media screen and (min-width: $breakpoint-mobile) {
@@ -149,18 +147,9 @@
 
 //** CODE CONTAINER **//
 .button_container {
-  display: grid;
-  place-items: center;
-  height: 10%;
+  @include buttonCodeContainer;
   button {
-    all: unset;
-    padding: 5px 10px;
-    border-radius: 3px;
-    background-color: $primary-dark;
-    color: $primary-light;
-    &:hover {
-      cursor: pointer;
-    }
+    @include buttonCode;
   }
 }
 
@@ -168,6 +157,9 @@
 /// BREAKPOINTS
 /// ***************************
 @media screen and (min-width: $breakpoint-tablet) {
+  .title_container {
+    @include cardTitle;
+  }
   .main_container {
     padding: 0;
   }
@@ -188,10 +180,6 @@
   .left_container {
     padding: 15px 20px;
     position: relative;
-
-    .title_container {
-      font-size: 1.2rem;
-    }
   }
   .content_container {
     display: flex;
@@ -201,8 +189,7 @@
     align-items: center;
     height: 100%;
     .content_text {
-      font-size: 0.9rem;
-      line-height: 1.4rem;
+      @include cardContentText;
     }
   }
 
@@ -224,6 +211,28 @@
     top: 50%;
     transform: translateY(-50%);
     width: 1px;
+  }
+}
+
+.button_container_large {
+  display: flex;
+  gap: 20px;
+
+  .button_code {
+    @include buttonCode;
+  }
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    flex-direction: column;
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    flex-direction: row;
+    text-align: center;
+  }
+}
+@media screen and (min-width: $breakpoint-tablet) {
+  .card_container_laptop {
+    grid-template-columns: 1fr 1.9fr;
   }
 }
 
