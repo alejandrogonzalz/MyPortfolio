@@ -1,15 +1,11 @@
 @import "../sass/global";
 @import "../sass//mixins";
 
-.full__page {
-  width: 100vw;
-  height: 100vh;
-}
-
 .body {
   color: $primary-dark;
   overflow-y: auto;
   padding-top: 7vh;
+  padding-bottom: 2vh;
 }
 
 .light {
@@ -50,6 +46,7 @@
 
   .project_item {
     position: relative;
+    overflow: hidden;
   }
 
   /// BREAKPOINTS

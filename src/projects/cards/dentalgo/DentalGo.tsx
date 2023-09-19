@@ -59,6 +59,7 @@ export const DentalGoCard = () => {
   const ButtonCode = (
     <animated.button
       style={{ ...buttonCodeProps }}
+      className={classes.button_code}
       onMouseEnter={() => setIsButtonHoverCode(true)}
       onMouseLeave={() => setIsButtonHoverCode(false)}
       onFocus={() => setIsButtonHoverCode(true)}
@@ -70,6 +71,7 @@ export const DentalGoCard = () => {
   const ButtonWeb = (
     <animated.button
       style={{ ...buttonWebProps }}
+      className={classes.button_code}
       onMouseEnter={() => setIsButtonHoverWeb(true)}
       onMouseLeave={() => setIsButtonHoverWeb(false)}
       onFocus={() => setIsButtonHoverWeb(true)}
@@ -106,7 +108,11 @@ export const DentalGoCard = () => {
             {iconPaths.map((path, index) => {
               return (
                 <div className={classes.icon} key={index}>
-                  <img src={path.icon} alt={`Icon ${index + 1}`} />
+                  <img
+                    src={path.icon}
+                    alt={`Icon ${index + 1}`}
+                    draggable={false}
+                  />
                 </div>
               );
             })}
@@ -116,13 +122,17 @@ export const DentalGoCard = () => {
       <div className={classes.bottom_container}>
         <div className={classes.img_container}>
           <div className={classes.desktop}>
-            <img src={desktop} alt="Desktop dentalgo website" />
+            <img
+              src={desktop}
+              alt="Desktop dentalgo website"
+              draggable={false}
+            />
           </div>
           <div className={classes.tablet}>
-            <img src={ipad} alt="Tablet dentlago website" />
+            <img src={ipad} alt="Tablet dentlago website" draggable={false} />
           </div>
           <div className={classes.mobile}>
-            <img src={phone} alt="Mobile dentalgo website" />
+            <img src={phone} alt="Mobile dentalgo website" draggable={false} />
           </div>
         </div>
 

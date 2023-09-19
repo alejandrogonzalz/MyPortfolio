@@ -1,0 +1,157 @@
+@import "../../../../sass/global";
+@import "../../../../sass/mixins";
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+@mixin circle($height, $background-color) {
+  position: absolute;
+  aspect-ratio: 1/1;
+  height: $height;
+  border-radius: 50%;
+  background-color: $background-color;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.light {
+  .item_one {
+    background-color: $blue-500 !important;
+  }
+  .item_two {
+    background-color: $red-500 !important;
+  }
+  .item_three {
+    background-color: $gray-600 !important;
+  }
+  .agave {
+    color: $green-400 !important;
+  }
+}
+
+/////////////////
+//** iGem **////
+///////////////
+.first_tab {
+  display: flex;
+  flex-direction: column;
+
+  .top_container {
+    height: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (min-width: $breakpoint-desktop) {
+      grid-template-columns: 1.1fr 1fr;
+    }
+
+    @media screen and (min-width: $breakpoint-large-desktop) {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  .bottom_container {
+    height: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    @media screen and (min-width: $breakpoint-tablet) {
+      height: 80%;
+    }
+    @media screen and (min-width: $breakpoint-desktop) {
+      height: 60%;
+      grid-template-columns: 1.2fr 2fr;
+    }
+
+    @media screen and (min-width: $breakpoint-large-desktop) {
+      grid-template-columns: 1.2fr 2fr;
+    }
+  }
+
+  .img_container {
+    display: grid;
+    place-items: center;
+    .img_content {
+      width: 100%;
+    }
+  }
+  .dna_container {
+    @media screen and (min-width: $breakpoint-desktop) {
+      padding: 0 0 0 30px;
+    }
+  }
+
+  .text_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    strong {
+      font-weight: 900;
+      font-style: italic;
+      color: $orange-600;
+    }
+    .agave {
+      color: $green-800;
+    }
+    .biology {
+      color: $blue-500;
+    }
+
+    @media screen and (min-width: $breakpoint-desktop) {
+      padding-left: 15px;
+      font-size: 1.4rem;
+      line-height: 2rem;
+    }
+    @media screen and (min-width: $breakpoint-large-desktop) {
+      padding-left: 15px;
+      font-size: 1.7rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  .technique_list {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+    gap: 15px;
+    & li {
+      list-style: none;
+      padding: 5px 0;
+      font-style: italic;
+      font-size: 1rem;
+      font-weight: 300;
+      text-align: center;
+    }
+    @media screen and (min-width: $breakpoint-large-desktop) {
+      flex-direction: row;
+      li {
+        padding: 20px 5px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .item_one {
+    background-color: $blue-200;
+  }
+  .item_two {
+    background-color: $red-200;
+  }
+  .item_three {
+    background-color: $gray-300;
+  }
+}
+
+@import "./second";
+@import "./third";
+@import "./fourth";

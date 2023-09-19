@@ -9,15 +9,18 @@
 .light {
   background-color: $primary-dark;
   color: $primary-light;
+  strong {
+    color: $green-400 !important;
+  }
   .separator_horizontal,
   .separator_vertical,
   .separator_vertical_right,
   .separator_vertical_one {
     background-color: $primary-light;
   }
-  .code_container > button {
-    background-color: $primary-light;
-    color: $primary-dark;
+  .button_code {
+    background-color: $primary-light !important;
+    color: $primary-dark !important;
   }
   .right_container {
     border-color: $primary-light;

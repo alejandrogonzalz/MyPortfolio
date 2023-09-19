@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import { HLine } from "../shared/lines";
 import { TerraCapitalCard } from "./cards/terracapital/TerraCapital";
 import { DentalGoCard } from "./cards/dentalgo/DentalGo";
+import { ResearchCard } from "./cards/research/Research";
 
 export const Projects = () => {
   const appContext = useContext(AppContext);
@@ -36,7 +37,7 @@ export const Projects = () => {
               <DentalGoCard />
             </div>
             <div className={classes.project_item}>
-              <DentalGoCard />
+              <ResearchCard />
             </div>
           </div>
         </div>

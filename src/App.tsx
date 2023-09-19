@@ -30,7 +30,7 @@ export const App = () => {
           className={clsx(classes.landing__page, { [classes.light]: light })}
           style={{ opacity: opacity }}
         >
-          <Landing style={{ opacity: opacity }} />
+          <Landing />
         </animated.div>
 
         <animated.div

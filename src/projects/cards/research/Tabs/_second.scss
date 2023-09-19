@@ -1,0 +1,65 @@
+.second_tab {
+  .content,
+  .circle {
+    position: absolute;
+    display: grid;
+    place-content: center;
+    aspect-ratio: 1/1;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .circle {
+    border-radius: 50%;
+    border: 2px solid $sand-8;
+  }
+  .title {
+    font-weight: 900;
+    white-space: nowrap;
+    text-align: center;
+
+    span {
+      color: $orange-600;
+    }
+  }
+
+  .img_container {
+    width: 30%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .dna_container {
+    top: 100%;
+  }
+
+  .footer {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    font-style: italic;
+    font-weight: 300;
+    text-align: right;
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    .content,
+    .circle {
+      height: 60%;
+    }
+    .title {
+      font-size: 2.2rem;
+    }
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    .title {
+      font-size: 2.5rem;
+    }
+  }
+  @media screen and (min-width: $breakpoint-large-desktop) {
+    .title {
+      font-size: 3.1rem;
+    }
+  }
+}

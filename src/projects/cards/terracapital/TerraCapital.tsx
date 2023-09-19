@@ -101,7 +101,11 @@ export const TerraCapitalCard = () => {
                 {iconPaths.map((path, index) => {
                   return (
                     <div className={classes.icon} key={index}>
-                      <img src={path.icon} alt={`Icon ${index + 1}`} />
+                      <img
+                        src={path.icon}
+                        alt={`Icon ${index + 1}`}
+                        draggable={false}
+                      />
                     </div>
                   );
                 })}
@@ -167,7 +171,11 @@ export const TerraCapitalCard = () => {
             {iconPaths.map((path, index) => {
               return (
                 <div className={classes.icon} key={index}>
-                  <img src={path.icon} alt={`Icon ${index + 1}`} />
+                  <img
+                    src={path.icon}
+                    alt={`Icon ${index + 1}`}
+                    draggable={false}
+                  />
                 </div>
               );
             })}

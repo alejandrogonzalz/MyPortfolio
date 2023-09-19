@@ -8,7 +8,13 @@ import {
   FourthSlide,
 } from "./Slides/Slides";
 
-import { Dispatch, SetStateAction, useEffect, useState, useContext} from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
@@ -16,7 +22,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  // faCode,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { AppContext } from "../../../app/AppContext";
@@ -31,7 +36,7 @@ interface SliderI {
 
 export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
   const appContext = useContext(AppContext);
-  const light = appContext?.theme === 'light';
+  const light = appContext?.theme === "light";
   const slides = [SecondSlide, FirstSlide, ThirdSlide, FourthSlide];
   const [active, setActive] = useState([
     { id: 0, value: false },
@@ -112,7 +117,11 @@ export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
   );
 
   return (
-    <div className={clsx(classes.swiper, {[classes.light]: light})} {...bind()} style={{ touchAction: "none" }}>
+    <div
+      className={clsx(classes.swiper, { [classes.light]: light })}
+      {...bind()}
+      style={{ touchAction: "none" }}
+    >
       {transitions((style, index) => {
         const SlideElement = slides[index];
         return (
