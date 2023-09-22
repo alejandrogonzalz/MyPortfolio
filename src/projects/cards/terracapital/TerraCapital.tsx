@@ -19,6 +19,7 @@ import { animated, useSpring } from "@react-spring/web";
 import HTML5 from "./assets/html5.svg";
 import SASS from "./assets/sass.svg";
 import REACT from "./assets/react.svg";
+import { ArrowBottomLeftIcon } from "@radix-ui/react-icons";
 
 export const TerraCapitalCard = () => {
   const appContext = useContext(AppContext);
@@ -58,7 +59,7 @@ export const TerraCapitalCard = () => {
 
   const ButtonMore = (
     <animated.button
-      className={classes.button_more}
+      className={classes.button_code}
       style={{ ...buttonMoreProps }}
       onClick={() => setIsFlipped(!isFlipped)}
       onMouseEnter={() => setIsButtonHover(true)}
@@ -71,7 +72,7 @@ export const TerraCapitalCard = () => {
     </animated.button>
   );
 
-  const buttonCode = (
+  const ButtonCode = (
     <animated.button
       className={classes.button_code}
       style={{ ...buttonCodeProps }}
@@ -84,7 +85,7 @@ export const TerraCapitalCard = () => {
     </animated.button>
   );
 
-  let content;
+  let content, frontContent;
   if (screenWidth < 760) {
     content = (
       <>
@@ -126,7 +127,6 @@ export const TerraCapitalCard = () => {
               <strong>React framework</strong>, leveraging essential libraries
               such as React Router, Redux Toolkit, and TanStack Table.
             </span>
-            {ButtonMore}
           </div>
         </div>
         <div className={classes.slider_container}>
@@ -156,7 +156,13 @@ export const TerraCapitalCard = () => {
           />
           <Separator.Root className={classes.separator_horizontal} decorative />
         </div>
-        <div className={classes.button_container}>{buttonCode}</div>
+        <div className={classes.button_container}>{ButtonCode}</div>
+        <button
+          className={classes.back_button}
+          onClick={() => setIsFlipped(!isFlipped)}
+        >
+          <ArrowBottomLeftIcon />
+        </button>
       </>
     );
   } else {
@@ -181,7 +187,6 @@ export const TerraCapitalCard = () => {
             })}
           </div>
           <Separator.Root className={classes.separator_horizontal} decorative />
-
           <div className={classes.content_container}>
             <div className={classes.content_text}>
               Dynamic web application aimed at streamlining the{" "}
@@ -192,11 +197,14 @@ export const TerraCapitalCard = () => {
               such as React Router, Redux Toolkit, and TanStack Table.
             </div>
 
-            <div className={classes.button_container_large}>
-              {buttonCode}
-              {ButtonMore}
-            </div>
+            <div className={classes.button_container_large}>{ButtonCode}</div>
           </div>
+          <button
+            className={classes.back_button}
+            onClick={() => setIsFlipped(!isFlipped)}
+          >
+            <ArrowBottomLeftIcon />
+          </button>
           <Separator.Root className={classes.separator_vertical} decorative />
         </div>
 
@@ -211,20 +219,37 @@ export const TerraCapitalCard = () => {
       </div>
     );
   }
+
+  frontContent = (
+    <>
+      <div className={classes.front_container}>
+        <h1 className={classes.title}>TerraCapital</h1>
+        <div className={classes.button_container}>
+          {ButtonCode}
+          {ButtonMore}
+        </div>
+      </div>
+      <div className={classes.triangle} />
+      <div className={classes.triangle_2} />
+    </>
+  );
+
   return (
     <>
       <animated.div
-        className={clsx(classes.main_container, { [classes.light]: light })}
+        className={clsx(classes.main_container, classes.front, {
+          [classes.light]: light,
+        })}
         style={{
           opacity: opacity.to((o) => 1 - o),
           transform,
           zIndex: isFlipped ? 5 : 6,
         }}
       >
-        {content}
+        {frontContent}
       </animated.div>
       <animated.div
-        className={clsx(classes.main_container, classes.back, {
+        className={clsx(classes.main_container, {
           [classes.light]: light,
         })}
         style={{
@@ -234,7 +259,7 @@ export const TerraCapitalCard = () => {
           zIndex: isFlipped ? 6 : 5,
         }}
       >
-        {ButtonMore}
+        {content}
       </animated.div>
     </>
   );

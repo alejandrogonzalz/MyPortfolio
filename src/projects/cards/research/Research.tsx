@@ -2,8 +2,10 @@ import classes from "./research.module.scss";
 
 import * as Separator from "@radix-ui/react-separator";
 import * as Tabs from "@radix-ui/react-tabs";
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import { AppContext } from "../../../app/AppContext";
 import { useContext, useEffect, useState } from "react";
+import { useSpringButton } from "../sharedFX";
 
 import { animated, useSpring, useTransition } from "@react-spring/web";
 import { clsx } from "clsx";
@@ -11,12 +13,16 @@ import { clsx } from "clsx";
 import { FirstTab, SecondTab, ThirdTab, FourthTab } from "./Tabs/TabContent";
 
 export const ResearchCard = () => {
-  let content;
+  let content, frontContent;
   const appContext = useContext(AppContext);
   const light = appContext?.theme === "light";
 
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const [isButtonHover, setIsButtonHover] = useState<boolean>(false);
   const [tab, setTab] = useState<string>("tab1");
   const [activeStep, setActiveStep] = useState<number>(0);
+
+  const buttonMoreProps = useSpringButton(isButtonHover);
 
   useEffect(() => {
     console.log(tab);
@@ -38,18 +44,47 @@ export const ResearchCard = () => {
   });
 
   const transitions = useTransition(tab, {
-    from: { opacity: 0, x: 40 },
-    enter: { opacity: 1, x: 0 },
-    leave: { opacity: 0, x: 10 },
+    from: { opacity: 0, y: 20 },
+    enter: { opacity: 1, y: 0 },
+    leave: { opacity: 0, y: -20 },
     initial: null,
-    config: { duration: 350 },
+    config: { duration: 150 },
   });
+
+  const { transform, opacity } = useSpring({
+    opacity: isFlipped ? 1 : 0,
+    transform: `perspective(600px) rotateX(${isFlipped ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 600, friction: 75 },
+  });
+
+  const ButtonMore = (
+    <animated.button
+      className={classes.button_code}
+      style={{ ...buttonMoreProps }}
+      onClick={() => setIsFlipped(!isFlipped)}
+      onMouseEnter={() => setIsButtonHover(true)}
+      onMouseLeave={() => setIsButtonHover(false)}
+      onFocus={() => setIsButtonHover(true)}
+      onBlur={() => setIsButtonHover(false)}
+    >
+      <span>Read more</span>
+      <animated.span>...</animated.span>
+    </animated.button>
+  );
 
   content = (
     <>
       <div className={classes.container}>
-        <div className={classes.title}>
-          <h1>Research experience</h1>
+        <button
+          className={classes.back_button}
+          onClick={() => setIsFlipped(!isFlipped)}
+        >
+          <ArrowTopRightIcon />
+        </button>
+        <div className={classes.title_container}>
+          <div className={classes.title}>
+            <h1>Research experience</h1>
+          </div>
         </div>
         <Tabs.Root
           className={classes.tabs_root}
@@ -129,10 +164,44 @@ export const ResearchCard = () => {
     </>
   );
 
+  frontContent = (
+    <>
+      <div className={classes.front_container}>
+        <h1 className={classes.title}>
+          Research <br />
+          Experience
+        </h1>
+        <div className={classes.button_container}>{ButtonMore}</div>
+      </div>
+      <div className={classes.orbit} />
+      <div className={classes.circle} />
+    </>
+  );
+
   return (
     <>
       <animated.div
-        className={clsx(classes.main__container, { [classes.light]: light })}
+        className={clsx(classes.main_container, classes.front, {
+          [classes.light]: light,
+        })}
+        style={{
+          opacity: opacity.to((o) => 1 - o),
+          transform,
+          zIndex: isFlipped ? 5 : 6,
+        }}
+      >
+        {frontContent}
+      </animated.div>
+      <animated.div
+        className={clsx(classes.main_container, {
+          [classes.light]: light,
+        })}
+        style={{
+          opacity,
+          transform,
+          rotateX: "180deg",
+          zIndex: isFlipped ? 6 : 5,
+        }}
       >
         {content}
       </animated.div>

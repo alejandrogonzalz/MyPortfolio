@@ -8,6 +8,7 @@ import desktop from "./assets/desktop.png";
 import ipad from "./assets/ipad.png";
 import phone from "./assets/phone.png";
 
+import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faGlobe } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,7 +21,7 @@ import { animated, useSpring } from "@react-spring/web";
 import { clsx } from "clsx";
 
 export const DentalGoCard = () => {
-  let content;
+  let content, frontContent;
   const appContext = useContext(AppContext);
   const light = appContext?.theme === "light";
 
@@ -43,7 +44,7 @@ export const DentalGoCard = () => {
 
   const ButtonMore = (
     <animated.button
-      className={classes.button_more}
+      className={classes.button_code}
       style={{ ...buttonMoreProps }}
       onClick={() => setIsFlipped(!isFlipped)}
       onMouseEnter={() => setIsButtonHover(true)}
@@ -84,6 +85,12 @@ export const DentalGoCard = () => {
   content = (
     <>
       <div className={classes.top_container}>
+        <button
+          className={classes.back_button}
+          onClick={() => setIsFlipped(!isFlipped)}
+        >
+          <ArrowTopRightIcon />
+        </button>
         <div className={classes.left_container}>
           <div className={classes.title}>
             <h1>DentalGo</h1>
@@ -98,7 +105,6 @@ export const DentalGoCard = () => {
               and CSS. Consequently, the website maintains a straightforward and
               clean design
             </div>
-            {ButtonMore}
           </div>
           <Separator.Root className={classes.separator_horizontal} decorative />
         </div>
@@ -144,20 +150,36 @@ export const DentalGoCard = () => {
     </>
   );
 
+  frontContent = (
+    <>
+      <div className={classes.front_container}>
+        <h1 className={classes.title}>DentalGo</h1>
+        <div className={classes.button_container}>
+          {ButtonCode}
+          {ButtonWeb}
+          {ButtonMore}
+        </div>
+      </div>
+      <div className={classes.circle} />
+      <div className={classes.circle_2} />
+    </>
+  );
   return (
     <>
       <animated.div
-        className={clsx(classes.main_container, { [classes.light]: light })}
+        className={clsx(classes.main_container, classes.front, {
+          [classes.light]: light,
+        })}
         style={{
           opacity: opacity.to((o) => 1 - o),
           transform,
           zIndex: isFlipped ? 5 : 6,
         }}
       >
-        {content}
+        {frontContent}
       </animated.div>
       <animated.div
-        className={clsx(classes.main_container, classes.back, {
+        className={clsx(classes.main_container, {
           [classes.light]: light,
         })}
         style={{
@@ -167,7 +189,7 @@ export const DentalGoCard = () => {
           zIndex: isFlipped ? 6 : 5,
         }}
       >
-        {ButtonMore}
+        {content}
       </animated.div>
     </>
   );

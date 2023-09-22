@@ -4,8 +4,8 @@
 .body {
   color: $primary-dark;
   overflow-y: auto;
-  padding-top: 7vh;
-  padding-bottom: 2vh;
+  padding-top: 55px;
+  padding-bottom: 15px;
 }
 
 .light {
@@ -27,13 +27,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1.5vh 5vw;
+  margin: 15px 5vw;
 }
 
 .horizontal_line {
   border-bottom: 1px solid $primary-light;
   width: 100%;
-  margin-bottom: 1.6vh;
+  margin-bottom: 10px;
   color: $primary-light;
 }
 
@@ -51,7 +51,7 @@
 
   /// BREAKPOINTS
   @media screen and (min-width: $breakpoint-tablet) {
-    grid-template-rows: repeat(2, calc(81vh));
+    grid-template-rows: repeat(2, calc(715px));
     gap: calc(1vh + 0.5vw);
     grid-template-columns: 1fr 1fr;
 

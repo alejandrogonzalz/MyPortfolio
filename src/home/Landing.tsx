@@ -20,6 +20,16 @@ export const Landing = () => {
   const light = appContext?.theme === "light";
   const [arrowHover, setArrowHover] = useState<boolean>();
 
+  const animation = useSpring({
+    from: { transform: "translateX(-100%)", opacity: 0 },
+    to: [{ transform: "translateX(0%)", opacity: 1 }],
+    config: {
+      tension: 280,
+      friction: 22,
+      duration: 200,
+    },
+  });
+
   const iconPaths = [
     { icon: JS, className: classes.icon_javascript },
     { icon: HTML5, className: classes.icon_html },
@@ -35,12 +45,15 @@ export const Landing = () => {
   });
 
   return (
-    <div className={classes.landing__page}>
+    <animated.div className={classes.landing__page} style={animation}>
       <VLine className={classes.vertical_line} />
+
       <HLine className={classes.horizontal_line_1} />
-      <div className={classes.top_container}>
+
+      <animated.div className={classes.top_container}>
         <HoverComponent />
-      </div>
+      </animated.div>
+
       <HLine className={classes.horizontal_line_2}>
         <div className={classes.name_container}>
           <div className={classes.name_wrapper}>
@@ -105,6 +118,6 @@ export const Landing = () => {
       >
         <ArrowDownIcon />
       </animated.div>
-    </div>
+    </animated.div>
   );
 };

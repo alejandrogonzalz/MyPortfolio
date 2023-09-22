@@ -6,6 +6,48 @@
   @include cardContainer;
 }
 
+.front {
+  .front_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    .title {
+      @include titleFrontCard();
+    }
+    .button_container {
+      all: unset;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  .circle {
+    @include circle();
+    opacity: 0.5;
+    z-index: -2;
+    top: calc(50% - 100px);
+    left: calc(50% - 30px);
+    @media screen and (min-width: $breakpoint-desktop) {
+      top: calc(50% - 150px);
+      left: calc(50% - 80px);
+    }
+  }
+  .circle_2 {
+    @include circle(140px, $sand-6);
+    opacity: 0.5;
+
+    z-index: -1;
+    top: calc(50%);
+    left: calc(50% + 60px);
+  }
+}
+
 .light {
   background-color: $primary-dark;
   color: $primary-light;
@@ -25,6 +67,17 @@
   .right_container {
     border-color: $primary-light;
   }
+  .back_button {
+    svg {
+      color: $primary-light !important;
+    }
+    &:hover {
+      background-color: $primary-light;
+      svg {
+        color: $primary-dark !important;
+      }
+    }
+  }
 }
 
 .separator_horizontal {
@@ -36,6 +89,16 @@
 
 .button_more {
   @include buttonMore();
+}
+
+.back_button {
+  @include backButton();
+  top: -65px;
+  right: -65px;
+  svg {
+    top: calc(50% + 20px);
+    left: calc(50% - 15px);
+  }
 }
 
 //** TOP CONTAINER CSS ** //

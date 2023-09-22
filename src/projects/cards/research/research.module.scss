@@ -2,14 +2,96 @@
 @import "../../../sass/mixins";
 
 //** MAIN CSS ** //
-.main__container {
+.main_container {
   @include cardContainer;
+}
+
+.front {
+  .front_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    .title {
+      @include titleFrontCard();
+    }
+    .button_container {
+      all: unset;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+  .orbit {
+    position: absolute;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 310px;
+    background-color: transparent;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(25deg);
+    z-index: -1;
+
+    border: 0.2rem solid $primary-dark;
+    border-top: 0.2rem solid transparent;
+
+    outline: 0.2rem solid $primary-dark;
+    outline-offset: 0.9rem;
+    @media screen and (min-width: $breakpoint-mobile) {
+      width: 400px;
+    }
+    @media screen and (min-width: $breakpoint-tablet) {
+      width: 330px;
+    }
+    @media screen and (min-width: $breakpoint-laptop) {
+      width: 430px;
+    }
+    @media screen and (min-width: $breakpoint-large-desktop) {
+      width: 600px;
+    }
+  }
+  .circle {
+    position: absolute;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 210px;
+    background-color: $blue-100;
+    transform: translate(-50%, -50%) rotate(25deg);
+    box-shadow: 0 0 10px 10px $blue-900;
+
+    opacity: 0.5;
+    z-index: -2;
+    top: 50%;
+    left: 50%;
+    @media screen and (min-width: $breakpoint-mobile) {
+      width: 300px;
+    }
+    @media screen and (min-width: $breakpoint-tablet) {
+      width: 230px;
+    }
+    @media screen and (min-width: $breakpoint-laptop) {
+      width: 330px;
+    }
+    @media screen and (min-width: $breakpoint-large-desktop) {
+      width: 500px;
+    }
+  }
 }
 
 .light {
   background-color: $primary-dark;
   color: $primary-light;
-
+  .orbit {
+    border-color: $primary-light;
+    border-top: 0.2rem solid transparent;
+    outline-color: $primary-light;
+  }
   .separator_horizontal,
   .separator_vertical,
   .separator_vertical_right,
@@ -22,6 +104,17 @@
   }
   .right_container {
     border-color: $primary-light;
+  }
+  .back_button {
+    svg {
+      color: $primary-light !important;
+    }
+    &:hover {
+      background-color: $primary-light;
+      svg {
+        color: $primary-dark !important;
+      }
+    }
   }
 }
 
@@ -36,8 +129,22 @@
   @include buttonMore();
 }
 
+.button_code {
+  @include buttonCode;
+}
+
 .title {
   @include cardTitle;
+}
+
+.back_button {
+  @include backButton();
+  top: -65px;
+  right: -65px;
+  svg {
+    top: calc(50% + 20px);
+    left: calc(50% - 15px);
+  }
 }
 
 .selector_top,

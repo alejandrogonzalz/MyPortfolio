@@ -63,11 +63,13 @@
 
 @mixin cardTitle {
   font-size: 0.8rem;
+  text-align: left;
   @media screen and (min-width: $breakpoint-tablet) {
-    text-align: center;
     font-size: 1.1rem;
   }
   @media screen and (min-width: $breakpoint-laptop) {
+    text-align: center;
+
     font-size: 1.2rem;
   }
 }
@@ -93,5 +95,81 @@
   @media screen and (min-width: $breakpoint-large-desktop) {
     font-size: 1rem;
     line-height: 2rem;
+  }
+}
+
+@mixin triangle($color: $red-600) {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%) rotate(180deg);
+  z-index: -1;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 200px solid $color;
+  @media screen and (min-width: $breakpoint-mobile) {
+    left: 50%;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 300px solid $color;
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    left: 50%;
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-bottom: 360px solid $color;
+  }
+}
+
+@mixin circle($width: 240px, $background-color: $blue-200) {
+  position: absolute;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  width: $width;
+  background-color: $background-color;
+  transform: translate(-50%, -50%);
+
+  @media screen and (min-width: $breakpoint-mobile) {
+    width: calc($width * 1.05);
+  }
+  @media screen and (min-width: $breakpoint-tablet) {
+    width: calc($width * 1.2);
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    width: calc($width * 1.4);
+  }
+}
+
+@mixin titleFrontCard {
+  text-align: center;
+  font-size: 3.3rem;
+  @media screen and (min-width: $breakpoint-tablet) {
+    font-size: 3.6rem;
+  }
+  @media screen and (min-width: $breakpoint-laptop) {
+    font-size: 4.2rem;
+  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: 4.5rem;
+  }
+}
+
+@mixin backButton {
+  all: unset;
+  position: absolute;
+  padding: 45px;
+  border-radius: 50%;
+  svg {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: $primary-dark;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $gray-900;
+    opacity: 0.5;
+    svg {
+      color: $primary-light;
+    }
   }
 }
