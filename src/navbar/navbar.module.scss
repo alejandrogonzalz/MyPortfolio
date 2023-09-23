@@ -62,11 +62,7 @@
 .nav_elements {
   @include elements(column);
   gap: 5%;
-  div {
-    font-family: $font-inter, $font-fira-code, $font-roboto;
-    padding: 8px 14px;
-    border-radius: 4px;
-  }
+
   z-index: 99999999999;
 }
 .mobile {
@@ -107,28 +103,19 @@
   color: $secondary-light;
 }
 
-.nav_element {
-  button {
-    all: unset;
-  }
-  &:hover {
-    cursor: pointer;
-    background-color: $pink-900;
-    color: $pink-100;
-  }
-}
-
 .fn_elements {
   display: flex;
   flex-direction: row;
-  gap: 5%;
+  justify-content: center;
+  width: 100%;
+  gap: 10%;
 }
 
 .fn_element {
   svg {
     aspect-ratio: 1/1;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     color: $primary-light;
   }
   a {
@@ -150,13 +137,16 @@
 /// BREAKPOINTS
 /// ***************************
 @media screen and (min-width: $breakpoint-tablet) {
+  .fn_elements {
+    width: auto;
+  }
   .nav_trigger {
     display: none;
   }
   .navbar {
     top: 0;
     width: 100vw;
-    opacity: 0.9;
+    opacity: 1;
   }
   .nav_elements {
     @include elements();

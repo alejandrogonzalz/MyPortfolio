@@ -21,10 +21,5 @@ $breakpoint-desktop: 1200px;
 $breakpoint-laptop: 950px;
 $breakpoint-tablet: 760px;
 $breakpoint-mobile: 550px;
-
-$breakpoints: (
-  desktop: 1200px,
-  laptop: 950px,
-  tablet: 760px,
-  mobile: 550px,
-);
+$breakpoint-small-mobile: 380px;
+$breakpoint-height: 700px;

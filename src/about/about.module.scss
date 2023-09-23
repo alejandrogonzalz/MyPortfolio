@@ -4,104 +4,305 @@
 .about__page {
   height: 100%;
   width: 100%;
+  position: absolute;
   display: grid;
-  place-items: center;
+  justify-content: center;
+  @media screen and (min-width: $breakpoint-tablet) {
+    padding-left: 35px;
+    padding-right: 35px;
+    grid-template-columns: 3fr 1.5fr;
+    gap: 20px;
+  }
+}
+
+@mixin aboutContainers($width) {
   position: relative;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  width: $width;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .main_container {
-  margin: 0 13vw;
-  height: 80%;
+  @include aboutContainers(calc(100vw - 40px));
+  @media screen and (min-width: $breakpoint-tablet) {
+    @include aboutContainers(100%);
+  }
+}
+
+.secondary_container {
+  @include aboutContainers(100%);
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  height: calc(100%);
+  width: calc(100%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $primary-light;
+  opacity: 0.13;
+}
+
+.title_container,
+.lightsaber_container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   h1 {
-    font-size: 1.3rem;
-    text-align: center;
+    font-size: 1.8rem;
     white-space: nowrap;
   }
 }
+@mixin lightsaber($background-color, $color) {
+  height: 5px;
+  width: 100%;
+  background-color: $background-color;
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 0 20px 5px $color;
+}
 
-.about_me {
-  padding: 1.1rem;
+.separator_horizontal {
+  @include lightsaber($red-700, $red-900);
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    border-radius: 0 3px 3px 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+    background-color: $sand-11;
+  }
+}
+
+.lightsaber_1 {
+  @include lightsaber($green-700, $green-900);
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    border-radius: 0 3px 3px 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+    background-color: $sand-11;
+  }
+}
+.lightsaber_2 {
+  @include lightsaber($blue-700, $blue-900);
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    border-radius: 0 3px 3px 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 12px;
+    right: 0;
+    background-color: $sand-11;
+  }
+}
+
+.lightsaber_container {
+  margin-bottom: 40px;
+}
+
+.biography {
   text-align: justify;
-  z-index: 1;
-  p {
-    all: unset;
-    z-index: 1;
-    font-size: 0.85rem;
-    line-height: 1.1rem;
+  font-size: 0.75rem;
+  line-height: 1.45rem;
+  padding: 1.5vh 10px 3vh;
+  strong {
+    font-size: 1rem;
+    color: $orange-400;
   }
 }
 
-.my_competences {
-  padding: 2vh 1vw;
+@mixin skill($color) {
+  color: $color;
+  font-weight: 500;
+  align-items: center;
+  display: inline-flex;
+  place-content: center;
+  gap: 6px;
+  img {
+    width: 1rem;
+  }
+}
+.js {
+  @include skill($yellow-500);
+}
+.ts {
+  @include skill($blue-400);
+}
+.css {
+  @include skill($blue-500);
+}
+.sass {
+  @include skill($pink-600);
+}
+.react {
+  @include skill($teal-300);
+}
+
+.subtitle_container {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.wrapper {
   display: grid;
-  place-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  .compentece {
-    z-index: 1;
-    background-color: white;
-    color: black;
-    font-weight: 500;
-    display: grid;
-    place-items: center;
-    text-transform: capitalize;
-    border-radius: 2px;
-    width: 60%;
-    height: 100%;
-    padding: 5%;
+  grid-template-rows: 1fr;
+  gap: 18px;
+}
+
+.wrapper_item {
+  border-radius: 4px;
+  display: grid;
+  align-items: center;
+  padding: 8px 10px;
+  grid-template-columns: 1fr 0 1.85fr;
+  height: 13vh;
+  gap: 2vh;
+  @media screen and (min-width: $breakpoint-tablet) {
+    height: 15vh;
   }
 }
 
-// LINES CSS
-.vertical_line_left {
-  @include VerticalLine(1px solid white, 90vh);
-  left: 12vw;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  z-index: 1;
+.wrapper_item:nth-child(1) {
+  background-color: $teal-900;
 }
-
-.vertical_line_right {
-  @include VerticalLine(1px solid white, 90vh);
-  right: 12vw;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  z-index: 1;
+.wrapper_item:nth-child(2) {
+  background-color: $indigo-900;
 }
-
-.horizontal_line {
-  @include HorizontalLine(1px solid white, 90vw);
-  z-index: 1;
-  right: 0;
-  left: 0;
-  margin-right: auto;
-  margin-left: auto;
-  transform: translate(0, -50%);
-}
-
-.space_canvas {
-  position: absolute !important;
-  inset: 0;
-  z-index: -1;
-}
-
-/// ***************************
-/// BREAKPOINTS
-/// ***************************
-@media screen and (min-width: $breakpoint-tablet) {
-  .main_container {
-    h1 {
-      font-size: 2rem;
+.wrapper_item:nth-child(3) {
+  background-color: $gray-300;
+  color: $primary-dark;
+  .vertical_line {
+    background-color: $primary-dark;
+    box-shadow: 0 0 15px 3px $sand-10;
+    border-radius: 0 5px;
+    bottom: 0 !important;
+    &::after,
+    &::before {
+      border-radius: 50px 0 5px 0;
     }
   }
 }
 
-@media screen and (min-width: $breakpoint-laptop) {
+.vertical_line {
+  height: 100%;
+  width: 4.5px;
+  border-radius: 5px;
+  background-color: $primary-light;
+  position: relative;
+  box-shadow: 0 0 15px 3px $primary-light;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 5px;
+    width: 9px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 25px;
+    background-color: $sand-11;
+  }
+}
+
+.item_title {
+  font-size: 0.9rem;
+  @media screen and (min-width: $breakpoint-laptop) {
+    font-size: 1.1rem;
+  }
+}
+
+.item_content {
+  font-size: 0.8rem;
+  text-align: right;
+  @media screen and (min-width: $breakpoint-laptop) {
+    font-size: 0.95rem;
+  }
+}
+
+.competences_wrapper {
+  all: unset;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  li {
+    list-style: none;
+  }
+}
+.competence_item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.starwars {
+  width: 60%;
+  display: flex;
+  justify-content: end;
+  img {
+    width: 4rem;
+  }
+}
+
+.starwars_text {
+  width: 100%;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+@media screen and (max-width: 432px) {
+  .title_container > h1 {
+    font-size: 1.4rem;
+  }
+  .biography {
+    font-size: 0.7rem;
+    line-height: 1.4rem;
+  }
+  .subtitle_container {
+    font-size: 0.8rem;
+  }
+  .item_title {
+    font-size: 0.7rem;
+  }
+  .item_content {
+    font-size: 0.7rem;
+  }
+  .wrapper_item {
+    height: 11vh;
+  }
+}
+
+@media screen and (max-height: $breakpoint-height) {
+  .biography {
+    line-height: 1.1rem;
+  }
+}
+
+@media screen and (min-width: $breakpoint-desktop) {
+  .biography {
+    font-size: 1rem;
+    line-height: 3vh;
+  }
 }

@@ -8,7 +8,6 @@ import { useState } from "react";
 
 import { AppContext } from "./app/AppContext";
 import { useContext } from "react";
-import { Space } from "./about/space";
 import clsx from "clsx";
 
 export const App = () => {
@@ -42,7 +41,6 @@ export const App = () => {
           }}
         >
           <About style={{ opacity: scrollYProgress }} />
-          <Space />
         </animated.div>
 
         {new Array(2).fill(null).map((_, index) => (

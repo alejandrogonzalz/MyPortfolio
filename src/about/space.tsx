@@ -1,10 +1,9 @@
 import * as THREE from "three";
 
-import classes from "./about.module.scss";
 import { Canvas, useLoader, useThree, useFrame } from "@react-three/fiber";
 // import { OrbitControls } from "@react-three/drei";
 import { useMemo, Suspense, useRef } from "react";
-import particleImg from "./point.png";
+import particleImg from "./assets/point.png";
 
 const Particles = () => {
   const particleTex = useLoader(THREE.TextureLoader, particleImg);
@@ -88,7 +87,7 @@ const Particles = () => {
 
 export const Space = () => {
   return (
-    <Canvas className={classes.space_canvas}>
+    <Canvas>
       <Suspense fallback={null}>
         <Particles />
       </Suspense>

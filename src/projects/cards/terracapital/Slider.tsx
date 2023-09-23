@@ -8,13 +8,7 @@ import {
   FourthSlide,
 } from "./Slides/Slides";
 
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-  useContext,
-} from "react";
+import { Dispatch, SetStateAction, useState, useContext } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
@@ -47,10 +41,6 @@ export const Slider = ({ index, setIndex, clicked, setClicked }: SliderI) => {
     const state = active.find((item) => item.id === id);
     return state ? state.value : null;
   };
-
-  useEffect(() => {
-    console.log(getActive(0));
-  }, [active]);
 
   const updateActive = (id: number, newState: boolean) => {
     setActive((prevState) => {

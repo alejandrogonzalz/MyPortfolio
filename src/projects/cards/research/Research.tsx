@@ -25,7 +25,6 @@ export const ResearchCard = () => {
   const buttonMoreProps = useSpringButton(isButtonHover);
 
   useEffect(() => {
-    console.log(tab);
     const found = tablist.find((item) => item.id === tab);
     if (found) {
       setActiveStep(found.value);

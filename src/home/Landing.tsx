@@ -21,7 +21,7 @@ export const Landing = () => {
   const [arrowHover, setArrowHover] = useState<boolean>();
 
   const animation = useSpring({
-    from: { transform: "translateX(-100%)", opacity: 0 },
+    from: { transform: "translateX(100%)", opacity: 0 },
     to: [{ transform: "translateX(0%)", opacity: 1 }],
     config: {
       tension: 280,
@@ -112,7 +112,10 @@ export const Landing = () => {
         onMouseEnter={() => setArrowHover(true)}
         onMouseLeave={() => setArrowHover(false)}
         onClick={() => {
-          window.scrollTo(0, document.body.scrollHeight);
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
         }}
         className={clsx(classes.arrow_down, { [classes.light]: light })}
       >

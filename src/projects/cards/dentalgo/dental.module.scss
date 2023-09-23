@@ -19,6 +19,9 @@
       @include titleFrontCard();
     }
     .button_container {
+      @media screen and (max-width: 420px) {
+        flex-direction: column;
+      }
       all: unset;
       width: 100%;
       display: flex;
@@ -216,6 +219,18 @@
     width: 17%;
     left: 70%;
     transform: translateX(-70%);
+  }
+
+  @media screen and (max-width: $breakpoint-small-mobile) {
+    .desktop {
+      width: 82%;
+    }
+    .tablet {
+      width: 28%;
+    }
+    .mobile {
+      width: 13%;
+    }
   }
 
   @media screen and (min-width: $breakpoint-mobile) {

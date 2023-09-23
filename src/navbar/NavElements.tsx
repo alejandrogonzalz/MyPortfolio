@@ -1,20 +1,24 @@
 import classes from "./navbar.module.scss";
+import styles from "./navelements.module.scss";
+import { clsx } from "clsx";
+
 import {
   LinkedInLogoIcon,
   GitHubLogoIcon,
   Cross1Icon,
 } from "@radix-ui/react-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 
-import { clsx } from "clsx";
 import { AppContext } from "../app/AppContext";
-import { forwardRef, ForwardedRef, useContext } from "react";
+import { useContext } from "react";
 
-interface NavElement {
-  text: string;
-  path: string | undefined | null;
-}
+import RESUME from "./utilities/assets/resumeEN.png";
+
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import { CaretDownIcon } from "@radix-ui/react-icons";
+
+import { forwardRef, ForwardedRef } from "react";
 
 interface FnElement {
   icon: string;
@@ -52,38 +56,6 @@ export const FnElements = () => {
   );
 };
 
-const NavElement = ({ text, path }: NavElement) => {
-  const appContext = useContext(AppContext);
-
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (text === "About") {
-      navigate("/");
-
-      setTimeout(() => {
-        window.scrollTo(0, document.body.scrollHeight);
-      }, 0);
-    } else if (text === "Home") {
-      window.scrollTo(0, 0);
-      navigate("/");
-    } else if (typeof path === "string") {
-      navigate(path);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 0);
-    } else if (text === "Resume") {
-      appContext?.setOpen(true);
-    }
-  };
-
-  return (
-    <div className={classes.nav_element} onClick={handleClick}>
-      <button>{text}</button>
-    </div>
-  );
-};
-
 interface NavElementsProps {
   className?: string;
   navOpen?: boolean;
@@ -99,12 +71,9 @@ export const NavElements = forwardRef(
     { className, navOpen, setNavOpen }: NavElementsProps,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
-    const navElements = [
-      { text: "Home", path: "/" },
-      { text: "About", path: "/" },
-      { text: "Projects", path: "/projects" },
-      { text: "Resume", path: null },
-    ];
+    const location = useLocation();
+    const appContext = useContext(AppContext);
+    const light = appContext?.theme === "light";
 
     const handleNavClose = () => {
       if (setNavOpen) {
@@ -121,6 +90,35 @@ export const NavElements = forwardRef(
       transform: navOpen ? "scale(1)" : "scale(0)",
       config: { tension: 300, friction: 30 },
     });
+
+    const scrollBottom = () => {
+      if (location.pathname === "/projects") {
+        setTimeout(() => {
+          window.scrollTo(0, document.body.scrollHeight);
+        }, 0);
+      } else {
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
+        }, 0);
+      }
+    };
+    const scrollTop = () => {
+      if (location.pathname === "/") {
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 0);
+      } else {
+        setTimeout(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }, 0);
+      }
+    };
 
     return (
       <>
@@ -146,13 +144,62 @@ export const NavElements = forwardRef(
           ) : null}
 
           <FnElements />
-          {navElements.map((item, index) => {
-            return (
-              <NavElement key={index} text={item.text} path={item?.path} />
-            );
-          })}
+
+          <NavigationMenu.Root
+            className={clsx(styles.navigation_root, { [styles.light]: light })}
+          >
+            <NavigationMenu.List className={styles.navigation_list}>
+              <NavigationMenu.Item className={styles.nav_element}>
+                <Link to="/" onClick={scrollTop}>
+                  Home
+                </Link>
+              </NavigationMenu.Item>
+              <NavigationMenu.Item className={styles.nav_element}>
+                <Link to="/" onClick={scrollBottom}>
+                  About
+                </Link>
+              </NavigationMenu.Item>
+              <NavigationMenu.Item className={styles.nav_element}>
+                <Link to="/projects" onClick={scrollTop}>
+                  Projects
+                </Link>
+              </NavigationMenu.Item>
+              <NavigationMenu.Item className={styles.nav_element}>
+                <ResumeContent />
+              </NavigationMenu.Item>
+            </NavigationMenu.List>
+          </NavigationMenu.Root>
         </animated.div>
       </>
     );
   }
 );
+
+const ResumeContent = () => {
+  return (
+    <>
+      <NavigationMenu.Trigger>
+        Resume <CaretDownIcon className={styles.caret_down} aria-hidden />
+      </NavigationMenu.Trigger>
+      <NavigationMenu.Content className={styles.navigation_content}>
+        <div className={styles.content_container}>
+          <div className={styles.box_decoration_1} />
+          <div className={styles.box_decoration_2} />
+
+          <div className={styles.resume}>
+            <div className={styles.custom_border} />
+            {/* <div className={styles.custom_bg} /> */}
+            <img src={RESUME} alt="Resume" />
+          </div>
+          <div className={styles.download_container}>
+            <button>Download (Spanish)</button>
+            <button>Download (English)</button>
+          </div>
+        </div>
+        <NavigationMenu.Indicator className={styles.navigation_indicator}>
+          <div className={styles.arrow} />
+        </NavigationMenu.Indicator>
+      </NavigationMenu.Content>
+    </>
+  );
+};

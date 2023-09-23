@@ -235,3 +235,9 @@
     color: $orange-500;
   }
 }
+
+@media screen and (max-width: 410px) {
+  .tabs_trigger {
+    font-size: 0.85rem;
+  }
+}

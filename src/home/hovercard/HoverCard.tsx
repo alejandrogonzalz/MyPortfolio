@@ -7,13 +7,14 @@ import tec80 from "./pictures/tec80.jpg";
 import * as HoverCard from "@radix-ui/react-hover-card";
 
 import { animated, useTransition, config } from "@react-spring/web";
-import { AppContext } from "../../app/AppContext";
+import { AppContext, useScreenWidth } from "../../app/AppContext";
 import { useContext, useState } from "react";
 
 import { clsx } from "clsx";
 
 export const HoverComponent = () => {
   const appContext = useContext(AppContext);
+  const screenWidth = useScreenWidth();
   const light = appContext?.theme === "light";
   const [open, setOpen] = useState<boolean>(false);
 
@@ -23,8 +24,24 @@ export const HoverComponent = () => {
     leave: { opacity: 0, x: 10 },
     config: config.stiff,
   });
-  return (
-    <HoverCard.Root openDelay={50} open={open} onOpenChange={setOpen}>
+
+  let content;
+
+  if (screenWidth < 760) {
+    content = (
+      <HoverCard.Trigger asChild>
+        <div
+          className={classes.hovercard_trigger}
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          <img src={pic0} />
+        </div>
+      </HoverCard.Trigger>
+    );
+  } else {
+    content = (
       <HoverCard.Trigger asChild>
         <a
           className={classes.hovercard_trigger}
@@ -37,6 +54,12 @@ export const HoverComponent = () => {
           </div>
         </a>
       </HoverCard.Trigger>
+    );
+  }
+
+  return (
+    <HoverCard.Root openDelay={50} open={open} onOpenChange={setOpen}>
+      {content}
       {transitions((styles, item) =>
         item ? (
           <>

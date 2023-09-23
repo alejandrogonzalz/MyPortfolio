@@ -59,6 +59,10 @@
   strong {
     color: $green-900;
   }
+  @media screen and (max-width: $breakpoint-small-mobile) {
+    font-size: 0.55rem !important;
+    line-height: 0.9rem !important;
+  }
   @media screen and (min-width: $breakpoint-tablet) {
     font-size: 0.95rem !important;
     line-height: 2rem !important;
@@ -90,10 +94,6 @@
   @media screen and (min-width: $breakpoint-large-desktop) {
     @include flexSlide(row);
     .title {
-      text-align: left;
-    }
-    .text_container {
-      font-size: 1.1rem;
       text-align: left;
     }
   }
@@ -138,14 +138,6 @@
     align-items: end;
   }
 
-  .text_container {
-    font-size: 0.65rem;
-    text-align: right;
-    font-style: italic;
-    line-height: 1.1rem;
-    font-weight: 300;
-  }
-
   @media screen and (min-width: $breakpoint-mobile) {
     .container_mobile {
       grid-template-columns: 2.5fr 1fr;
@@ -176,11 +168,6 @@
       justify-content: right;
       text-align: right;
     }
-
-    .text_container {
-      font-size: 1.1rem;
-      text-align: left;
-    }
   }
 
   @media screen and (min-width: $breakpoint-desktop) {
@@ -197,6 +184,10 @@
   right: -10vw;
   width: 70vw;
   transform: rotate(-35deg);
+
+  @media screen and (max-width: $breakpoint-small-mobile) {
+    transform: rotate(-20deg);
+  }
 
   @media screen and (min-width: $breakpoint-tablet) {
     right: -150px;
@@ -306,15 +297,17 @@
     }
   }
 
+  @media screen and (max-width: $breakpoint-small-mobile) {
+    .redux_img {
+      width: 80%;
+    }
+  }
+
   @media screen and (min-width: $breakpoint-mobile) {
     text-align: justify;
 
     .col_container {
       margin-bottom: 10px;
-    }
-
-    .text_container {
-      font-size: 0.75rem;
     }
 
     .redux_img {
@@ -342,10 +335,6 @@
           border-radius: 10px;
         }
       }
-      .text_container {
-        height: 100%;
-        padding: 30px 10px 10px 20px;
-      }
     }
   }
 
@@ -357,11 +346,6 @@
       grid-template-columns: 4.5fr 0 1fr;
       .redux_img {
         padding: 20px 40px;
-      }
-      .text_container {
-        height: 100%;
-        padding: 30px 10px 10px 20px;
-        line-height: 1.6rem;
       }
     }
     .separator_vertical {
