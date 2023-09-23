@@ -3,7 +3,7 @@ import * as SwitchPrimitive from "@radix-ui/react-switch";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { AppContext } from "../../app/AppContext";
 import { useContext } from "react";
-import clsx from "clsx";
+import { clsx } from "clsx";
 
 export const ThemeSwitch = ({ ...props }) => {
   const appContext = useContext(AppContext);
