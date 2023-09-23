@@ -1,14 +1,13 @@
-import * as THREE from "three";
+import { TextureLoader, Points, BufferAttribute } from "three";
 
 import { Canvas, useLoader, useThree, useFrame } from "@react-three/fiber";
-// import { OrbitControls } from "@react-three/drei";
 import { useMemo, Suspense, useRef } from "react";
 import particleImg from "./assets/point.png";
 
 const Particles = () => {
-  const particleTex = useLoader(THREE.TextureLoader, particleImg);
-  const starBoxRef = useRef<THREE.Points>(null);
-  const bufferRef = useRef<THREE.BufferAttribute>(null);
+  const particleTex = useLoader(TextureLoader, particleImg);
+  const starBoxRef = useRef<Points>(null);
+  const bufferRef = useRef<BufferAttribute>(null);
 
   const { camera } = useThree();
 
@@ -55,10 +54,6 @@ const Particles = () => {
       bufferRef.current.needsUpdate = true;
     }
   });
-
-  // useEffect(() => {
-  //   console.log(starBoxRef.current);
-  // }, []);
 
   return (
     <points ref={starBoxRef}>

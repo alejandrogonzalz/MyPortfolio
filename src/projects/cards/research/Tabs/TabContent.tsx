@@ -39,7 +39,7 @@ export const FirstTab = () => {
         </div>
         <div className={classes.img_container}>
           <div className={classes.img_content}>
-            <img src={AGAVE} alt="Agave" draggable={false} />
+            <img src={AGAVE} alt="Agave" draggable={false} loading="lazy" />
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@ export const FirstTab = () => {
       <div className={classes.bottom_container}>
         <div className={clsx(classes.img_container, classes.dna_container)}>
           <div className={classes.img_content}>
-            <img src={DNA} alt="DNA" draggable={false} />
+            <img src={DNA} alt="DNA" draggable={false} loading="lazy" />
           </div>
         </div>
         <div className={classes.text_container}>
@@ -80,13 +80,13 @@ export const SecondTab = () => {
       <div className={classes.circle} />
       <div className={classes.content}>
         <div className={classes.img_container}>
-          <img src={LUNG} alt="LUNG" draggable={false} />
+          <img src={LUNG} alt="LUNG" draggable={false} loading="lazy" />
         </div>
         <h1 className={classes.title}>
           DNA quantification <br /> for <span>lung diseases</span>
         </h1>
         <div className={clsx(classes.img_container, classes.dna_container)}>
-          <img src={DNA_2} alt="DNA" draggable={false} />
+          <img src={DNA_2} alt="DNA" draggable={false} loading="lazy" />
         </div>
       </div>
       <p className={classes.footer}>
@@ -135,7 +135,12 @@ export const ThirdTab = () => {
         </div>
         <div className={classes.img_container}>
           <div className={classes.img_wrapper}>
-            <img src={ME} alt="A picture of myself" />
+            <img
+              src={ME}
+              alt="A picture of myself"
+              draggable={false}
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
@@ -146,17 +151,24 @@ export const ThirdTab = () => {
             <img
               src={CYCLIN}
               alt="Cyclin D1 positive transcriptional feedback"
+              draggable={false}
+              loading="lazy"
             />
           </div>
         </div>
         <div className={classes.img_container}>
           <div className={classes.img_wrapper}>
-            <img src={COLLAGE} alt="Lab work" />
+            <img
+              src={COLLAGE}
+              alt="Lab work"
+              draggable={false}
+              loading="lazy"
+            />
           </div>
         </div>
         <div className={classes.img_container}>
           <div className={classes.img_wrapper}>
-            <img src={POSTER} alt="Poster " />
+            <img src={POSTER} alt="Poster " draggable={false} loading="lazy" />
           </div>
         </div>
       </div>
@@ -186,7 +198,7 @@ export const FourthTab = () => {
       </div>
       <div className={classes.brain_container}>
         <div className={classes.brain}>
-          <img src={BRAIN} alt="A brain..." />
+          <img src={BRAIN} alt="A brain..." draggable={false} loading="lazy" />
         </div>
       </div>
       <div className={classes.bottom_container}>

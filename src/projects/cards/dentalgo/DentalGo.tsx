@@ -141,13 +141,24 @@ export const DentalGoCard = () => {
               src={desktop}
               alt="Desktop dentalgo website"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <div className={classes.tablet}>
-            <img src={ipad} alt="Tablet dentlago website" draggable={false} />
+            <img
+              src={ipad}
+              alt="Tablet dentlago website"
+              draggable={false}
+              loading="lazy"
+            />
           </div>
           <div className={classes.mobile}>
-            <img src={phone} alt="Mobile dentalgo website" draggable={false} />
+            <img
+              src={phone}
+              alt="Mobile dentalgo website"
+              draggable={false}
+              loading="lazy"
+            />
           </div>
         </div>
 

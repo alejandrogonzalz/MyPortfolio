@@ -38,7 +38,7 @@ export const FirstSlide = () => {
           </span>
         </div>
         <div className={classes.GIF_container}>
-          <img src={LOGIN} alt="Login GIF" draggable={false} />
+          <img src={LOGIN} alt="Login GIF" draggable={false} loading="lazy" />
         </div>
       </div>
     );
@@ -46,7 +46,7 @@ export const FirstSlide = () => {
     content = (
       <div className={clsx(classes.first_slide, { [classes.light]: light })}>
         <div className={classes.GIF_container}>
-          <img src={LOGIN} alt="Login GIF" draggable={false} />
+          <img src={LOGIN} alt="Login GIF" draggable={false} loading="lazy" />
         </div>
         <div className={classes.container}>
           <div className={classes.title}>
@@ -96,7 +96,12 @@ export const SecondSlide = () => {
         </div>
 
         <div className={classes.laptop_sale}>
-          <img src={LAPSALE} alt="Sale screen in laptop" draggable={false} />
+          <img
+            src={LAPSALE}
+            alt="Sale screen in laptop"
+            draggable={false}
+            loading="lazy"
+          />
         </div>
       </div>
     );
@@ -122,7 +127,12 @@ export const SecondSlide = () => {
         </div>
 
         <div className={classes.laptop_sale}>
-          <img src={LAPSALE} alt="Sale screen in laptop" draggable={false} />
+          <img
+            src={LAPSALE}
+            alt="Sale screen in laptop"
+            draggable={false}
+            loading="lazy"
+          />
         </div>
 
         <div className={classes.screens_container}>
@@ -131,6 +141,7 @@ export const SecondSlide = () => {
               src={clientScreen}
               alt="Sale screen in laptop"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <div className={classes.two_screen}>
@@ -138,6 +149,7 @@ export const SecondSlide = () => {
               src={contractAdded}
               alt="Sale screen in laptop"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <div className={classes.three_screen}>
@@ -145,6 +157,7 @@ export const SecondSlide = () => {
               src={newContract}
               alt="Sale screen in laptop"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <div className={classes.four_screen}>
@@ -152,6 +165,7 @@ export const SecondSlide = () => {
               src={toApprove}
               alt="Sale screen in laptop"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <div className={classes.five_screen}>
@@ -159,6 +173,7 @@ export const SecondSlide = () => {
               src={toApprove}
               alt="Sale screen in laptop"
               draggable={false}
+              loading="lazy"
             />
           </div>
           <div className={classes.six_screen}>
@@ -166,6 +181,7 @@ export const SecondSlide = () => {
               src={toApprove}
               alt="Sale screen in laptop"
               draggable={false}
+              loading="lazy"
             />
           </div>
         </div>
@@ -210,7 +226,12 @@ export const ThirdSlide = () => {
               draggable={false}
             />
           ) : (
-            <img src={REDUX} alt="Default image" draggable={false} />
+            <img
+              src={REDUX}
+              alt="Default image"
+              draggable={false}
+              loading="lazy"
+            />
           )}
         </div>
       </div>
@@ -232,6 +253,7 @@ export const ThirdSlide = () => {
                   src={REDUX_LIGHT}
                   alt="Sale screen in laptop"
                   draggable={false}
+                  loading="lazy"
                 />
               ) : (
                 <img src={REDUX} alt="Default image" draggable={false} />
@@ -319,6 +341,7 @@ export const FourthSlide = () => {
                 src={TABLEFX}
                 alt="Sale screen in laptop"
                 draggable={false}
+                loading="lazy"
               />
             </div>
           </div>
