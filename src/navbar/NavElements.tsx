@@ -18,6 +18,9 @@ import RESUME from "./utilities/assets/resumeEN.png";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 
+import RESUMEEN from "./utilities/assets/ResumeEnglish.pdf";
+import RESUMEES from "./utilities/assets/ResumeSpanish.pdf";
+
 import { forwardRef, ForwardedRef } from "react";
 
 interface FnElement {
@@ -176,6 +179,21 @@ export const NavElements = forwardRef(
 );
 
 const ResumeContent = () => {
+  const downloadPDF = (pdfUrl: string, filename: string) => {
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = filename;
+    link.click();
+    link.remove();
+  };
+
+  const downloadResumeEN = () => {
+    downloadPDF(RESUMEEN, "ResumeEnglish");
+  };
+  const downloadResumeES = () => {
+    downloadPDF(RESUMEES, "ResumeSpanish");
+  };
+
   return (
     <>
       <NavigationMenu.Trigger>
@@ -188,12 +206,11 @@ const ResumeContent = () => {
 
           <div className={styles.resume}>
             <div className={styles.custom_border} />
-            {/* <div className={styles.custom_bg} /> */}
             <img src={RESUME} alt="Resume" />
           </div>
           <div className={styles.download_container}>
-            <button>Download (Spanish)</button>
-            <button>Download (English)</button>
+            <button onClick={downloadResumeES}>Download (Spanish)</button>
+            <button onClick={downloadResumeEN}>Download (English)</button>
           </div>
         </div>
         <NavigationMenu.Indicator className={styles.navigation_indicator}>

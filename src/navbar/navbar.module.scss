@@ -140,6 +140,10 @@
   .fn_elements {
     width: auto;
   }
+  .fn_element svg {
+    width: 33px;
+    height: 33px;
+  }
   .nav_trigger {
     display: none;
   }

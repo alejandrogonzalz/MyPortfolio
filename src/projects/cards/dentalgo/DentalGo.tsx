@@ -65,6 +65,9 @@ export const DentalGoCard = () => {
       onMouseLeave={() => setIsButtonHoverCode(false)}
       onFocus={() => setIsButtonHoverCode(true)}
       onBlur={() => setIsButtonHoverCode(false)}
+      onClick={() => {
+        window.open("https://github.com/alejandrogonzalz/DentalGo");
+      }}
     >
       <FontAwesomeIcon icon={faCode} /> Code
     </animated.button>
@@ -77,6 +80,12 @@ export const DentalGoCard = () => {
       onMouseLeave={() => setIsButtonHoverWeb(false)}
       onFocus={() => setIsButtonHoverWeb(true)}
       onBlur={() => setIsButtonHoverWeb(false)}
+      onClick={() => {
+        window.open(
+          "https://alejandrogonzalz.github.io/dentalgo.github.io/",
+          "_blank"
+        );
+      }}
     >
       <FontAwesomeIcon icon={faGlobe} /> Website
     </animated.button>
