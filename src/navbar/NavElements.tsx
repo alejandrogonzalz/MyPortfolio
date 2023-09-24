@@ -11,7 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 
 import { AppContext } from "../app/AppContext";
-import { useContext } from "react";
+import { useContext, forwardRef, ForwardedRef, useRef } from "react";
 
 import RESUME from "./utilities/assets/resumeEN.png";
 
@@ -20,8 +20,6 @@ import { CaretDownIcon } from "@radix-ui/react-icons";
 
 import RESUMEEN from "./utilities/assets/ResumeEnglish.pdf";
 import RESUMEES from "./utilities/assets/ResumeSpanish.pdf";
-
-import { forwardRef, ForwardedRef } from "react";
 
 interface FnElement {
   icon: string;
@@ -123,6 +121,13 @@ export const NavElements = forwardRef(
       }
     };
 
+    // useEffect(() => {
+    //   if (open === "") {
+    //     console.log("content", open === "");
+    //     console.log(typeof open);
+    //   }
+    // }, [open]);
+
     return (
       <>
         <animated.div
@@ -171,6 +176,10 @@ export const NavElements = forwardRef(
                 <ResumeContent />
               </NavigationMenu.Item>
             </NavigationMenu.List>
+
+            {/* <div className={styles.navigation_viewport_position}>
+              <NavigationMenu.Viewport className={styles.navigation_viewport} />
+            </div> */}
           </NavigationMenu.Root>
         </animated.div>
       </>
@@ -179,6 +188,8 @@ export const NavElements = forwardRef(
 );
 
 const ResumeContent = () => {
+  const myRef = useRef<HTMLDivElement | null>(null);
+
   const downloadPDF = (pdfUrl: string, filename: string) => {
     const link = document.createElement("a");
     link.href = pdfUrl;
@@ -199,7 +210,7 @@ const ResumeContent = () => {
       <NavigationMenu.Trigger>
         Resume <CaretDownIcon className={styles.caret_down} aria-hidden />
       </NavigationMenu.Trigger>
-      <NavigationMenu.Content className={styles.navigation_content}>
+      <NavigationMenu.Content className={styles.navigation_content} ref={myRef}>
         <div className={styles.content_container}>
           <div className={styles.box_decoration_1} />
           <div className={styles.box_decoration_2} />

@@ -1,19 +1,11 @@
 import { defineConfig } from "vite";
-import viteImagemin from "vite-plugin-imagemin";
+
 import viteCompression from "vite-plugin-compression";
 import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    viteImagemin({
-      gifsicle: {
-        optimizationLevel: 3,
-      },
-    }),
-    viteCompression(),
-  ],
+  plugins: [react(), viteCompression()],
   server: {
     host: true,
   },
