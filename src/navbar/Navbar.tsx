@@ -3,7 +3,7 @@ import classes from "./navbar.module.scss";
 import { Outlet } from "react-router-dom";
 import { NavElements } from "./NavElements";
 import { ThemeSwitch } from "./utilities/switchers";
-import { AppContext } from "../app/AppContext";
+import { AppContext, useScreenWidth } from "../app/AppContext";
 import { useContext, useState, useEffect, useRef } from "react";
 
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
@@ -12,21 +12,16 @@ import clsx from "clsx";
 
 export const Navbar = () => {
   const appContext = useContext(AppContext);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const screenWidth = useScreenWidth()
+
   const [navOpen, setNavOpen] = useState(false);
   const navMobileRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+
 
   useEffect(() => {
+
+
     const handleOutsideClick = (e: MouseEvent) => {
       if (
         navMobileRef.current &&
@@ -39,7 +34,9 @@ export const Navbar = () => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
+
   }, []);
+
 
   let navElements, navElementsMobile;
   if (screenWidth <= 760) {

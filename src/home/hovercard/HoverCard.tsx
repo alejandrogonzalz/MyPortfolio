@@ -54,12 +54,11 @@ export const HoverComponent = () => {
       {content}
       <>
         <HoverCard.Portal>
-          <HoverCard.Content asChild sideOffset={5} side="right">
+        <HoverCard.Content asChild sideOffset={5} side={screenWidth < 760 ? "bottom" : "right"} collisionPadding={50} align="start">
             <animated.div
               className={clsx(classes.hovercard_content, {
                 [classes.light]: light,
               })}
-              // style={styles}
             >
               <div className={classes.content_container}>
                 <div className={classes.header_container}>
