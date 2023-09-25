@@ -8,11 +8,8 @@ import {
 import { App } from "./App";
 import { Navbar } from "./navbar/Navbar";
 import { Projects } from "./projects/Projects";
-// import { Loading } from "./shared/Loading";
 
 export function Router() {
-
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
