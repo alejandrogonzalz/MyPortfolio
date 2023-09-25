@@ -90,6 +90,7 @@
 
   @media screen and (min-width: $breakpoint-tablet) {
     @include flexSlide(column-reverse);
+    justify-content: center;
   }
   @media screen and (min-width: $breakpoint-large-desktop) {
     @include flexSlide(row);
@@ -111,11 +112,11 @@
   @media screen and (min-width: $breakpoint-tablet) {
     width: 45vw;
   }
-  @media screen and (min-width: $breakpoint-laptop) {
-    width: 50vw;
-  }
   @media screen and (min-width: $breakpoint-desktop) {
-    width: 50vw;
+    width: 45vw;
+  }
+  @media screen and (min-width: $breakpoint-large-desktop) {
+    width: 48vw;
   }
 }
 

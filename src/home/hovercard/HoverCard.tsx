@@ -42,7 +42,7 @@ export const HoverComponent = () => {
           rel="noreferrer noopener"
         >
           <div>
-            <img src={pic0} />
+            <img src={pic0} loading="lazy"/>
           </div>
         </a>
       </HoverCard.Trigger>
