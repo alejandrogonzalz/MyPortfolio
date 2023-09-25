@@ -1,0 +1,10 @@
+@import "../sass/global";
+
+.loading_container{
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999999999999999999999999999999999999999999;
+    background-color: $primary-dark;
+    display: grid;
+    place-content: center;    
+}
