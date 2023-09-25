@@ -177,9 +177,7 @@ export const NavElements = forwardRef(
               </NavigationMenu.Item>
             </NavigationMenu.List>
 
-            {/* <div className={styles.navigation_viewport_position}>
-              <NavigationMenu.Viewport className={styles.navigation_viewport} />
-            </div> */}
+        
           </NavigationMenu.Root>
         </animated.div>
       </>
