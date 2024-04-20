@@ -1,5 +1,5 @@
 @import "../sass/global";
-@import "../sass//mixins";
+@import "../sass/mixins";
 
 // Container CSS
 .landing__page {
@@ -58,6 +58,7 @@
     font-size: 0.85rem;
     text-align: left;
     line-height: 1.8;
+    margin-top: 35px;
   }
 }
 
@@ -215,6 +216,11 @@
 /// ***************************
 /// BREAKPOINTS
 /// ***************************
+@media screen and (max-width: $breakpoint-tablet) {
+  .biography {
+    margin-top: 0 !important;
+  }
+}
 
 @media screen and (max-width: $breakpoint-small-mobile) {
   .middle_container > .biography {

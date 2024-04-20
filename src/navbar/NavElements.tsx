@@ -82,9 +82,6 @@ export const NavElements = forwardRef(
       }
     };
 
-
-
-
     const springProps: StyleSpringProps = useSpring({
       right: navOpen ? "0vw" : "-45vw",
     });
@@ -96,9 +93,7 @@ export const NavElements = forwardRef(
     });
 
     const scrollBottom = () => {
-
-      if (setNavOpen) setNavOpen(false)
-      
+      if (setNavOpen) setNavOpen(false);
 
       if (location.pathname === "/projects") {
         setTimeout(() => {
@@ -113,11 +108,11 @@ export const NavElements = forwardRef(
         }, 0);
       }
     };
-    
-    const scrollTop = () => {
-      if (setNavOpen) setNavOpen(false)
 
-      if (location.pathname === "/" ) {
+    const scrollTop = () => {
+      if (setNavOpen) setNavOpen(false);
+
+      if (location.pathname === "/") {
         setTimeout(() => {
           window.scrollTo({
             top: 0,
@@ -125,11 +120,9 @@ export const NavElements = forwardRef(
           });
         }, 0);
       } else {
-          window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
       }
     };
-
-
 
     return (
       <>
@@ -171,7 +164,7 @@ export const NavElements = forwardRef(
                 </Link>
               </NavigationMenu.Item>
               <NavigationMenu.Item className={styles.nav_element}>
-                <Link to="/projects" onClick={()=>{ window.scrollTo(0, 0)}}>
+                <Link to="/projects" onClick={scrollTop}>
                   Projects
                 </Link>
               </NavigationMenu.Item>
@@ -179,8 +172,6 @@ export const NavElements = forwardRef(
                 <ResumeContent />
               </NavigationMenu.Item>
             </NavigationMenu.List>
-
-      
           </NavigationMenu.Root>
         </animated.div>
       </>

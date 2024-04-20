@@ -66,8 +66,9 @@ export const Landing = () => {
 
       <div className={classes.middle_container}>
         <div className={classes.biography}>
-          Currently studying B.S. in Nanotechnology Engineering I’m a Front-End
-          React Developer looking forward to be a Fullstack Developer.
+          Experienced Full-Stack Developer proficient in React, Next.js, and
+          backend ORM frameworks such as Java SpringBoot and NestJS, with one
+          year of hands-on expertise.
         </div>
         <div className={classes.icon_container}>
           <span className={classes.text}>Tech Stack</span>
